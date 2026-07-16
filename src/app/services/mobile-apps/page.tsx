@@ -21,16 +21,16 @@ export default function MobileAppsPage() {
       <PageHero badge="Mobile Apps" title="Apps Users" highlight="Love to Use"
         subtitle="We craft native and cross-platform mobile experiences that are fast, intuitive, and built to retain users."
         breadcrumbs={[{ label: "Services", href: "/services" }, { label: "Mobile Apps" }]}
-        gradient="from-brand-700 via-brand-700 to-brand-600" />
+      />
       <section className="py-20 bg-white">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <div className="w-16 h-16 rounded-3xl bg-gradient-to-br from-brand-700 to-brand-600 flex items-center justify-center shadow-xl mb-6">
+              <div className="w-16 h-16 rounded-3xl bg-brand-700 flex items-center justify-center mb-6">
                 <FontAwesomeIcon icon={faMobileScreen} className="w-7 h-7 text-white" />
               </div>
               <h2 className="text-3xl font-black text-slate-900 mb-5">
-                Cross-Platform <span className="gradient-text">Mobile Excellence</span>
+                Cross-Platform <span className="text-brand-700">Mobile Excellence</span>
               </h2>
               <p className="text-gray-500 leading-relaxed mb-6">
                 Our mobile team builds pixel-perfect applications for iOS and Android using React Native and Flutter for shared codebases, or native Swift/Kotlin for maximum performance.
@@ -45,13 +45,13 @@ export default function MobileAppsPage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { label: "Apps Published", value: "8+", gradient: "from-brand-700 to-brand-600" },
-                { label: "Avg App Rating", value: "4.8★", gradient: "from-brand-700 to-brand-600" },
-                { label: "Downloads", value: "50K+", gradient: "from-brand-700 to-brand-600" },
-                { label: "Retention Rate", value: "78%", gradient: "from-brand-700 to-brand-600" },
+                { label: "Apps Published", value: "8+" },
+                { label: "Avg App Rating", value: "4.8★" },
+                { label: "Downloads", value: "50K+" },
+                { label: "Retention Rate", value: "78%" },
               ].map((stat) => (
                 <GlassCard key={stat.label} className="text-center">
-                  <p className={`text-3xl font-black bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent mb-1`}>{stat.value}</p>
+                  <p className="text-3xl font-black text-brand-700 mb-1">{stat.value}</p>
                   <p className="text-xs text-gray-500">{stat.label}</p>
                 </GlassCard>
               ))}
@@ -60,7 +60,7 @@ export default function MobileAppsPage() {
         </div>
       </section>
       <section className="py-16 bg-white text-center">
-        <a href="/get-a-quote" className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-brand-700 to-brand-600 text-white font-bold rounded-2xl shadow-xl hover:-translate-y-1 transition-all">
+        <a href="/get-a-quote" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-700 text-white font-bold rounded-2xl shadow-sm hover:bg-brand-800 transition-colors duration-200">
           Build Your App <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
         </a>
       </section>

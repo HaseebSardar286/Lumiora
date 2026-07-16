@@ -1,6 +1,5 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import PageHero from "@/components/ui/PageHero";
-import GlassCard from "@/components/ui/GlassCard";
 import CTA from "@/components/sections/CTA";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBriefcase, faArrowRight } from "@fortawesome/free-solid-svg-icons";
@@ -11,12 +10,12 @@ export const metadata: Metadata = {
 };
 
 const cases = [
-  { title: "FinTech Analytics Platform", client: "BankFlow Corp", result: "+340% performance, $2B+ daily transactions", tags: ["Next.js", "AWS", "PostgreSQL"], gradient: "from-brand-700 to-brand-900" },
-  { title: "AI-Powered E-Commerce", client: "NeuralShop", result: "+87% conversion rate, 2M+ products personalised", tags: ["Python", "GPT-4", "React"], gradient: "from-brand-700 to-brand-600" },
-  { title: "Telemedicine Platform", client: "MedCare Digital", result: "50k+ patients, 4.9★ App Store rating", tags: ["React Native", "Node.js", "HIPAA"], gradient: "from-brand-700 to-brand-600" },
-  { title: "Multi-Cloud DevOps Platform", client: "Fortune 500 Enterprise", result: "99.99% uptime, 50x deployments/day", tags: ["Kubernetes", "Terraform", "GCP"], gradient: "from-brand-700 to-brand-600" },
-  { title: "Real-Time Collaboration SaaS", client: "WorkSync Inc.", result: "1M+ users, 300ms global latency", tags: ["WebSockets", "Redis", "Next.js"], gradient: "from-brand-800 to-brand-600" },
-  { title: "Global Logistics Dashboard", client: "FreightPro", result: "40% operational cost reduction", tags: ["React", "D3.js", "Python"], gradient: "from-brand-400 to-brand-700" },
+  { title: "FinTech Analytics Platform", client: "BankFlow Corp", result: "+340% performance, $2B+ daily transactions", tags: ["Next.js", "AWS", "PostgreSQL"] },
+  { title: "AI-Powered E-Commerce", client: "NeuralShop", result: "+87% conversion rate, 2M+ products personalised", tags: ["Python", "GPT-4", "React"] },
+  { title: "Telemedicine Platform", client: "MedCare Digital", result: "50k+ patients, 4.9★ App Store rating", tags: ["React Native", "Node.js", "HIPAA"] },
+  { title: "Multi-Cloud DevOps Platform", client: "Fortune 500 Enterprise", result: "99.99% uptime, 50x deployments/day", tags: ["Kubernetes", "Terraform", "GCP"] },
+  { title: "Real-Time Collaboration SaaS", client: "WorkSync Inc.", result: "1M+ users, 300ms global latency", tags: ["WebSockets", "Redis", "Next.js"] },
+  { title: "Global Logistics Dashboard", client: "FreightPro", result: "40% operational cost reduction", tags: ["React", "D3.js", "Python"] },
 ];
 
 export default function CaseStudiesPage() {
@@ -30,9 +29,8 @@ export default function CaseStudiesPage() {
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {cases.map((c) => (
-              <div key={c.title} className="glass-card rounded-2xl overflow-hidden group cursor-pointer">
-                <div className={`h-40 bg-gradient-to-br ${c.gradient} flex items-end p-5 relative`}>
-                  <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_50%_50%,white,transparent_70%)]" />
+              <div key={c.title} className="bg-white border border-gray-200 shadow-sm rounded-2xl overflow-hidden group cursor-pointer hover:shadow-md transition-shadow duration-200">
+                <div className="h-40 bg-brand-700 flex items-end p-5 relative">
                   <FontAwesomeIcon icon={faBriefcase} className="absolute top-5 right-5 w-8 h-8 text-white/30" />
                   <span className="text-white/70 text-xs font-medium">{c.client}</span>
                 </div>

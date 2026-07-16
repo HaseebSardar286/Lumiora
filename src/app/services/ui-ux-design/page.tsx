@@ -17,15 +17,15 @@ export default function UIUXDesignPage() {
       <PageHero badge="UI/UX Design" title="Design That" highlight="Delights & Converts"
         subtitle="Human-centred design experiences that turn complex problems into intuitive, beautiful interfaces your users will love."
         breadcrumbs={[{ label: "Services", href: "/services" }, { label: "UI/UX Design" }]}
-        gradient="from-brand-700 via-pink-50 to-brand-600" />
+      />
       <section className="py-20 bg-white">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <div className="w-16 h-16 rounded-3xl bg-gradient-to-br from-brand-700 to-brand-accent flex items-center justify-center shadow-xl mb-6">
+              <div className="w-16 h-16 rounded-3xl bg-brand-700 flex items-center justify-center mb-6">
                 <FontAwesomeIcon icon={faPenRuler} className="w-7 h-7 text-white" />
               </div>
-              <h2 className="text-3xl font-black text-slate-900 mb-5">Design Driven by <span className="gradient-text">Empathy & Data</span></h2>
+              <h2 className="text-3xl font-black text-slate-900 mb-5">Design Driven by <span className="text-brand-700">Empathy & Data</span></h2>
               <p className="text-gray-500 leading-relaxed mb-6">Our designers combine deep user empathy with data-driven decision making to create interfaces that are not just beautiful — they convert, retain, and delight.</p>
               <div className="grid grid-cols-2 gap-3">
                 {features.map((f) => (
@@ -36,9 +36,9 @@ export default function UIUXDesignPage() {
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              {[{ label: "Designs Shipped", value: "20+", gradient: "from-brand-700 to-brand-accent" }, { label: "Avg UX Score", value: "92/100", gradient: "from-brand-600 to-brand-600" }, { label: "Conversion Lift", value: "+25%", gradient: "from-brand-700 to-brand-600" }, { label: "Accessibility", value: "WCAG AAA", gradient: "from-brand-700 to-brand-600" }].map((stat) => (
+              {[{ label: "Designs Shipped", value: "20+" }, { label: "Avg UX Score", value: "92/100" }, { label: "Conversion Lift", value: "+25%" }, { label: "Accessibility", value: "WCAG AAA" }].map((stat) => (
                 <GlassCard key={stat.label} className="text-center">
-                  <p className={`text-3xl font-black bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent mb-1`}>{stat.value}</p>
+                  <p className="text-3xl font-black text-brand-700 mb-1">{stat.value}</p>
                   <p className="text-xs text-gray-500">{stat.label}</p>
                 </GlassCard>
               ))}
@@ -47,7 +47,7 @@ export default function UIUXDesignPage() {
         </div>
       </section>
       <section className="py-16 bg-white text-center">
-        <a href="/get-a-quote" className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-brand-700 to-brand-accent text-white font-bold rounded-2xl shadow-xl hover:-translate-y-1 transition-all">
+        <a href="/get-a-quote" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-700 text-white font-bold rounded-2xl shadow-sm hover:bg-brand-800 transition-colors duration-200">
           Start a Design Project <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
         </a>
       </section>

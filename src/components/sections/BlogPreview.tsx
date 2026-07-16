@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faClock, faTag } from "@fortawesome/free-solid-svg-icons";
@@ -12,7 +12,6 @@ const posts = [
     category: "AI & Technology",
     readTime: "8 min read",
     date: "Jul 10, 2025",
-    gradient: "from-brand-700 to-brand-900",
     href: "/blog/ai-enterprise-software",
   },
   {
@@ -22,7 +21,6 @@ const posts = [
     category: "UI/UX Design",
     readTime: "6 min read",
     date: "Jul 5, 2025",
-    gradient: "from-brand-700 to-brand-600",
     href: "/blog/designing-for-accessibility",
   },
   {
@@ -32,14 +30,17 @@ const posts = [
     category: "DevOps",
     readTime: "12 min read",
     date: "Jun 28, 2025",
-    gradient: "from-brand-700 to-brand-600",
     href: "/blog/kubernetes-at-scale",
   },
 ];
 
 export default function BlogPreview() {
   return (
-    <section className="py-24 gradient-bg">
+    <section className="py-24 bg-transparent relative overflow-hidden">
+      {/* Background bubbles */}
+      <div className="absolute top-10 left-10 w-44 h-44 rounded-full bg-brand-200/20 border border-brand-200/30 pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-60 h-60 rounded-full bg-brand-100/35 border border-brand-200/40 pointer-events-none" />
+
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
           <SectionHeader
@@ -60,12 +61,11 @@ export default function BlogPreview() {
         <div className="grid md:grid-cols-3 gap-6">
           {posts.map((post) => (
             <Link key={post.title} href={post.href} className="group block">
-              <div className="glass-card rounded-2xl overflow-hidden h-full">
-                {/* Gradient banner */}
-                <div className={`h-44 bg-gradient-to-br ${post.gradient} relative`}>
-                  <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_30%_70%,white,transparent)]" />
+              <div className="bg-white border border-gray-200 shadow-sm rounded-2xl overflow-hidden h-full hover:shadow-md transition-shadow duration-200">
+                {/* Solid banner */}
+                <div className="h-44 bg-brand-700 relative">
                   <div className="absolute top-4 left-4">
-                    <span className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold text-white bg-white/20 backdrop-blur-sm border border-white/30">
+                    <span className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold text-white bg-white/20 border border-white/30">
                       <FontAwesomeIcon icon={faTag} className="w-3 h-3" />
                       {post.category}
                     </span>

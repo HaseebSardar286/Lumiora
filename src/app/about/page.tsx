@@ -19,19 +19,12 @@ export const metadata: Metadata = {
 };
 
 const values = [
-  { icon: faLightbulb, title: "Innovation First", desc: "We push boundaries and embrace emerging technologies to stay ahead.", gradient: "from-brand-700 to-brand-900" },
-  { icon: faUsers, title: "Client-Centric", desc: "Your success is our success. We build long-term partnerships, not one-off projects.", gradient: "from-brand-700 to-brand-600" },
-  { icon: faRocket, title: "Excellence Always", desc: "We hold ourselves to the highest standards in code quality, design, and delivery.", gradient: "from-brand-700 to-brand-600" },
-  { icon: faHeart, title: "Passionate Team", desc: "We love what we do, and that passion shows in every pixel and every line of code.", gradient: "from-brand-700 to-brand-600" },
-  { icon: faMedal, title: "Proven Results", desc: "Consistent delivery with measurable outcomes for our clients.", gradient: "from-brand-800 to-brand-600" },
-  { icon: faLeaf, title: "Sustainable Growth", desc: "We build scalable solutions designed to grow with your business long-term.", gradient: "from-brand-500 to-brand-600" },
-];
-
-const team = [
-  { name: "Alex Morgan", role: "CEO & Co-Founder", initials: "AM", gradient: "from-brand-700 to-brand-900" },
-  { name: "Jordan Lee", role: "CTO & Co-Founder", initials: "JL", gradient: "from-brand-700 to-brand-600" },
-  { name: "Priya Sharma", role: "Chief Design Officer", initials: "PS", gradient: "from-brand-700 to-brand-600" },
-  { name: "Chris Park", role: "Head of Engineering", initials: "CP", gradient: "from-brand-700 to-brand-600" },
+  { icon: faLightbulb, title: "Innovation First", desc: "We push boundaries and embrace emerging technologies to stay ahead." },
+  { icon: faUsers, title: "Client-Centric", desc: "Your success is our success. We build long-term partnerships, not one-off projects." },
+  { icon: faRocket, title: "Excellence Always", desc: "We hold ourselves to the highest standards in code quality, design, and delivery." },
+  { icon: faHeart, title: "Passionate Team", desc: "We love what we do, and that passion shows in every pixel and every line of code." },
+  { icon: faMedal, title: "Proven Results", desc: "Consistent delivery with measurable outcomes for our clients." },
+  { icon: faLeaf, title: "Sustainable Growth", desc: "We build scalable solutions designed to grow with your business long-term." },
 ];
 
 export default function AboutPage() {
@@ -54,7 +47,7 @@ export default function AboutPage() {
                 Our Story
               </span>
               <h2 className="text-4xl font-black text-slate-900 mb-6 leading-tight">
-                Crafting <span className="gradient-text">Digital Excellence</span>
+                Crafting <span className="text-brand-700">Digital Excellence</span>
               </h2>
               <p className="text-gray-500 leading-relaxed mb-5">
                 Lumiora was founded with a single conviction: that great technology, thoughtfully crafted, can transform businesses and improve lives. We started with a passionate team and a relentless focus on quality.
@@ -73,7 +66,7 @@ export default function AboutPage() {
                 { year: "Phase 4", event: "Reached 20+ projects milestone and 95% client satisfaction" },
               ].map((item) => (
                 <div key={item.year} className="flex gap-5 items-start">
-                  <div className="shrink-0 w-20 h-8 rounded-full bg-gradient-to-r from-brand-700 to-brand-900 flex items-center justify-center text-xs font-bold text-white">
+                  <div className="shrink-0 w-20 h-8 rounded-full bg-brand-700 flex items-center justify-center text-xs font-bold text-white">
                     {item.year}
                   </div>
                   <GlassCard padding="p-4" hover={false} className="flex-1">
@@ -87,20 +80,20 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="py-20 gradient-bg">
+      <section className="py-20 bg-gray-50">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest bg-brand-50 text-brand-700 border border-brand-200 mb-4">
               Our Values
             </span>
             <h2 className="text-4xl font-black text-slate-900">
-              What We <span className="gradient-text">Stand For</span>
+              What We <span className="text-brand-700">Stand For</span>
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {values.map((val) => (
               <GlassCard key={val.title} className="flex gap-4 items-start">
-                <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${val.gradient} flex items-center justify-center shadow-md shrink-0`}>
+                <div className="w-11 h-11 rounded-xl bg-brand-700 flex items-center justify-center shadow-sm shrink-0">
                   <FontAwesomeIcon icon={val.icon} className="w-5 h-5 text-white" />
                 </div>
                 <div>
@@ -112,8 +105,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-
 
       <CTA />
     </>

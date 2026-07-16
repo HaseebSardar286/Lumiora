@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -10,7 +10,6 @@ const testimonials = [
     name: "Sarah Chen",
     role: "CEO, NovaTech Ventures",
     initials: "SC",
-    gradient: "from-brand-700 to-brand-900",
     rating: 5,
   },
   {
@@ -19,7 +18,6 @@ const testimonials = [
     name: "Marcus Thompson",
     role: "CTO, DataFlow Inc.",
     initials: "MT",
-    gradient: "from-brand-700 to-brand-600",
     rating: 5,
   },
   {
@@ -28,14 +26,17 @@ const testimonials = [
     name: "Priya Patel",
     role: "Founder, MedCare Digital",
     initials: "PP",
-    gradient: "from-brand-700 to-brand-600",
     rating: 5,
   },
 ];
 
 export default function Testimonials() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-transparent relative overflow-hidden">
+      {/* Background bubbles */}
+      <div className="absolute top-10 right-10 w-40 h-40 rounded-full bg-brand-200/20 border border-brand-200/30 pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-52 h-52 rounded-full bg-brand-100/35 border border-brand-200/40 pointer-events-none" />
+
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           badge="Testimonials"
@@ -49,7 +50,7 @@ export default function Testimonials() {
           {testimonials.map((t) => (
             <div
               key={t.name}
-              className="glass-card rounded-2xl p-7 border border-brand-50 flex flex-col"
+              className="bg-white border border-gray-200 shadow-sm rounded-2xl p-7 flex flex-col"
             >
               {/* Quote icon */}
               <FontAwesomeIcon
@@ -72,14 +73,12 @@ export default function Testimonials() {
                 &ldquo;{t.quote}&rdquo;
               </p>
 
-              <div className="flex items-center gap-3 pt-4 border-t border-brand-50">
-                <div
-                  className={`w-10 h-10 rounded-xl bg-gradient-to-br ${t.gradient} flex items-center justify-center text-white text-sm font-bold shadow`}
-                >
+              <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                <div className="w-10 h-10 rounded-xl bg-brand-700 flex items-center justify-center text-white text-sm font-bold">
                   {t.initials}
                 </div>
                 <div>
-                  <p className="font-bold text-white text-sm">{t.name}</p>
+                  <p className="font-bold text-slate-900 text-sm">{t.name}</p>
                   <p className="text-xs text-gray-400">{t.role}</p>
                 </div>
               </div>

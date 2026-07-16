@@ -77,9 +77,9 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white ${
           scrolled
-            ? "shadow-lg shadow-brand-100/50 border-b border-brand-100"
+            ? "shadow-md border-b border-gray-200"
             : "border-b border-transparent"
         }`}
       >
@@ -88,13 +88,13 @@ export default function Header() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 group">
               <div className="relative w-9 h-9">
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-brand-800 via-brand-700 to-brand-600 shadow-lg group-hover:shadow-brand-300 transition-shadow duration-300" />
+                <div className="absolute inset-0 rounded-xl bg-brand-700" />
                 <FontAwesomeIcon
                   icon={faLightbulb}
                   className="absolute inset-0 m-auto text-white w-5 h-5"
                 />
               </div>
-              <span className="text-xl font-black gradient-text tracking-tight">
+              <span className="text-xl font-black text-brand-700 tracking-tight">
                 Lumiora
               </span>
             </Link>
@@ -110,7 +110,7 @@ export default function Header() {
                 >
                   <Link
                     href={item.href}
-                    className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200
+                    className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200
                       ${
                         pathname?.startsWith(item.href) && item.href !== "/"
                           ? "text-brand-700 bg-brand-50"
@@ -131,13 +131,13 @@ export default function Header() {
 
                   {/* Dropdown */}
                   {item.submenu && activeDropdown === item.label && (
-                    <div className="absolute top-full left-0 mt-1 w-52 rounded-2xl bg-white border border-brand-100 shadow-2xl shadow-brand-100/50 overflow-hidden animate-fade-in-up">
+                    <div className="absolute top-full left-0 mt-1 w-52 rounded-2xl bg-white border border-gray-200 shadow-lg overflow-hidden animate-fade-in-up">
                       <div className="p-2">
                         {item.submenu.map((sub) => (
                           <Link
                             key={sub.label}
                             href={sub.href}
-                            className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm text-gray-600 hover:text-brand-700 hover:bg-brand-50 transition-all duration-200 group"
+                            className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm text-gray-600 hover:text-brand-700 hover:bg-brand-50 transition-colors duration-200 group"
                           >
                             <span className="w-7 h-7 rounded-lg bg-brand-50 flex items-center justify-center group-hover:bg-brand-100 transition-colors">
                               <FontAwesomeIcon icon={sub.icon} className="w-3.5 h-3.5 text-brand-600" />
@@ -156,13 +156,13 @@ export default function Header() {
             <div className="hidden lg:flex items-center gap-3">
               <Link
                 href="/get-a-quote"
-                className="px-4 py-2 text-sm font-semibold text-brand-700 border border-brand-300 rounded-xl hover:bg-brand-50 hover:border-brand-500 transition-all duration-200"
+                className="px-4 py-2 text-sm font-semibold text-brand-700 border border-brand-300 rounded-xl hover:bg-brand-50 hover:border-brand-400 transition-colors duration-200"
               >
                 Get a Quote
               </Link>
               <Link
                 href="/book-consultation"
-                className="px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-brand-800 via-brand-700 to-brand-600 rounded-xl hover:shadow-lg hover:shadow-brand-200 hover:-translate-y-0.5 transition-all duration-300"
+                className="px-4 py-2 text-sm font-semibold text-white bg-brand-700 rounded-xl hover:bg-brand-800 transition-colors duration-200"
               >
                 Book Consultation
               </Link>
@@ -171,7 +171,7 @@ export default function Header() {
             {/* Mobile burger */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2 rounded-xl text-gray-600 hover:text-brand-700 hover:bg-brand-50 transition-all"
+              className="lg:hidden p-2 rounded-xl text-gray-600 hover:text-brand-700 hover:bg-brand-50 transition-colors"
               aria-label="Toggle menu"
             >
               <FontAwesomeIcon icon={mobileOpen ? faTimes : faBars} className="w-5 h-5" />
@@ -188,13 +188,13 @@ export default function Header() {
       >
         {/* Overlay */}
         <div
-          className="absolute inset-0 bg-brand-950/20 backdrop-blur-sm"
+          className="absolute inset-0 bg-black/20"
           onClick={() => setMobileOpen(false)}
         />
 
         {/* Drawer */}
         <div
-          className={`absolute right-0 top-0 h-full w-72 bg-white/95 backdrop-blur-2xl shadow-2xl transition-transform duration-300 ${
+          className={`absolute right-0 top-0 h-full w-72 bg-white shadow-xl transition-transform duration-300 ${
             mobileOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
@@ -208,7 +208,7 @@ export default function Header() {
                         onClick={() =>
                           setMobileExpanded(mobileExpanded === item.label ? null : item.label)
                         }
-                        className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-gray-700 font-medium hover:bg-brand-50 hover:text-brand-700 transition-all"
+                        className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-gray-700 font-medium hover:bg-brand-50 hover:text-brand-700 transition-colors"
                       >
                         <span className="flex items-center gap-3">
                           <span className="text-xs font-bold text-brand-400">{item.num}</span>
@@ -227,7 +227,7 @@ export default function Header() {
                             <Link
                               key={sub.label}
                               href={sub.href}
-                              className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:text-brand-700 hover:bg-brand-50 transition-all"
+                              className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:text-brand-700 hover:bg-brand-50 transition-colors"
                             >
                               <FontAwesomeIcon icon={sub.icon} className="w-3.5 h-3.5 text-brand-500" />
                               {sub.label}
@@ -239,7 +239,7 @@ export default function Header() {
                   ) : (
                     <Link
                       href={item.href}
-                      className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 font-medium hover:bg-brand-50 hover:text-brand-700 transition-all"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 font-medium hover:bg-brand-50 hover:text-brand-700 transition-colors"
                     >
                       <span className="text-xs font-bold text-brand-400">{item.num}</span>
                       {item.label}
@@ -252,13 +252,13 @@ export default function Header() {
             <div className="mt-6 space-y-3">
               <Link
                 href="/get-a-quote"
-                className="block w-full text-center px-6 py-3 border border-brand-400 text-brand-700 font-semibold rounded-xl hover:bg-brand-50 transition-all"
+                className="block w-full text-center px-6 py-3 border border-brand-400 text-brand-700 font-semibold rounded-xl hover:bg-brand-50 transition-colors"
               >
                 Get a Quote
               </Link>
               <Link
                 href="/book-consultation"
-                className="block w-full text-center px-6 py-3 bg-gradient-to-r from-brand-800 via-brand-700 to-brand-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all"
+                className="block w-full text-center px-6 py-3 bg-brand-700 text-white font-semibold rounded-xl hover:bg-brand-800 transition-colors"
               >
                 Book Consultation
               </Link>

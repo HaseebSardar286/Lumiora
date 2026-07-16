@@ -18,15 +18,12 @@ export default function PageHero({
   highlight,
   subtitle,
   breadcrumbs,
-  gradient = "from-white via-brand-alt to-brand-50",
 }: PageHeroProps) {
   return (
-    <section className={`relative pt-16 pb-12 bg-gradient-to-br ${gradient} overflow-hidden`}>
-
-
-      {/* Blobs */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-brand-200/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-0 w-48 h-48 bg-brand-200/40 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+    <section className="relative pt-16 pb-12 bg-transparent border-b border-gray-100 overflow-hidden">
+      {/* Background bubbles */}
+      <div className="absolute top-5 right-10 w-40 h-40 rounded-full bg-brand-200/20 border border-brand-200/30 pointer-events-none" />
+      <div className="absolute bottom-5 left-10 w-48 h-48 rounded-full bg-brand-100/35 border border-brand-200/40 pointer-events-none" />
 
       <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumbs */}
@@ -56,7 +53,7 @@ export default function PageHero({
           )}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-tight mb-5">
             {title}{" "}
-            {highlight && <span className="gradient-text">{highlight}</span>}
+            {highlight && <span className="text-brand-700">{highlight}</span>}
           </h1>
           {subtitle && (
             <p className="text-lg text-gray-500 leading-relaxed max-w-2xl">{subtitle}</p>

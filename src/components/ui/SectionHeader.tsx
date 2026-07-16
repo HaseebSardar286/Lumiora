@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 
 interface SectionHeaderProps {
   badge?: string;
@@ -34,7 +34,7 @@ export default function SectionHeader({
         {highlight ? (
           <>
             {title}{" "}
-            <span className="gradient-text">{highlight}</span>
+            <span className="text-brand-700">{highlight}</span>
           </>
         ) : (
           title

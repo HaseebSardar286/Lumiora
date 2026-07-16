@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import PageHero from "@/components/ui/PageHero";
 import GlassCard from "@/components/ui/GlassCard";
 import CTA from "@/components/sections/CTA";
@@ -11,14 +11,14 @@ export const metadata: Metadata = {
 };
 
 const projects = [
-  { title: "FinFlow Dashboard", category: "Web App", status: "Live", url: "#", gradient: "from-brand-700 to-brand-900", desc: "Real-time financial analytics platform." },
-  { title: "MedCare iOS App", category: "Mobile", status: "Live", url: "#", gradient: "from-brand-700 to-brand-600", desc: "Telemedicine mobile application." },
-  { title: "NeuralShop AI", category: "AI Platform", status: "Live", url: "#", gradient: "from-brand-700 to-brand-600", desc: "AI-powered product recommendation engine." },
-  { title: "CloudOps Portal", category: "DevOps", status: "Live", url: "#", gradient: "from-brand-700 to-brand-600", desc: "Multi-cloud infrastructure management." },
-  { title: "WorkSync SaaS", category: "Web App", status: "Live", url: "#", gradient: "from-brand-800 to-brand-600", desc: "Real-time team collaboration platform." },
-  { title: "FreightPro Dashboard", category: "Web App", status: "Live", url: "#", gradient: "from-brand-400 to-brand-700", desc: "Global logistics operations dashboard." },
-  { title: "EduLearn Platform", category: "Web App", status: "Live", url: "#", gradient: "from-brand-700 to-brand-accent", desc: "AI-powered personalised learning." },
-  { title: "RetailAI Analytics", category: "AI Platform", status: "Live", url: "#", gradient: "from-brand-600 to-brand-600", desc: "Predictive retail analytics system." },
+  { title: "FinFlow Dashboard", category: "Web App", status: "Live", url: "#", desc: "Real-time financial analytics platform." },
+  { title: "MedCare iOS App", category: "Mobile", status: "Live", url: "#", desc: "Telemedicine mobile application." },
+  { title: "NeuralShop AI", category: "AI Platform", status: "Live", url: "#", desc: "AI-powered product recommendation engine." },
+  { title: "CloudOps Portal", category: "DevOps", status: "Live", url: "#", desc: "Multi-cloud infrastructure management." },
+  { title: "WorkSync SaaS", category: "Web App", status: "Live", url: "#", desc: "Real-time team collaboration platform." },
+  { title: "FreightPro Dashboard", category: "Web App", status: "Live", url: "#", desc: "Global logistics operations dashboard." },
+  { title: "EduLearn Platform", category: "Web App", status: "Live", url: "#", desc: "AI-powered personalised learning." },
+  { title: "RetailAI Analytics", category: "AI Platform", status: "Live", url: "#", desc: "Predictive retail analytics system." },
 ];
 
 export default function LiveProjectsPage() {
@@ -27,15 +27,13 @@ export default function LiveProjectsPage() {
       <PageHero badge="Live Projects" title="Production-Ready" highlight="Live Deployments"
         subtitle="A selection of our live, deployed products actively serving users around the world."
         breadcrumbs={[{ label: "Portfolio", href: "/portfolio" }, { label: "Live Projects" }]}
-        gradient="from-white via-brand-alt to-brand-50"
       />
       <section className="py-20 bg-white">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {projects.map((p) => (
               <GlassCard key={p.title} className="flex flex-col">
-                <div className={`h-28 rounded-xl bg-gradient-to-br ${p.gradient} mb-4 flex items-center justify-center relative overflow-hidden`}>
-                  <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_50%_50%,white,transparent_70%)]" />
+                <div className="h-28 rounded-xl bg-brand-700 mb-4 flex items-center justify-center relative overflow-hidden">
                   <span className="text-white font-black text-lg opacity-30">{p.category}</span>
                 </div>
                 <div className="flex items-center justify-between mb-1">

@@ -50,20 +50,14 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-br from-brand-950 via-brand-900 to-brand-800 text-white">
-      {/* Decorative blobs */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-brand-700/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-brand-700/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
-
+    <footer className="bg-brand-950 text-white">
       <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
-        {/* Top CTA strip */}
-
         {/* Footer grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10 mb-16">
           {/* Brand column */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-5 group">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-700 via-brand-600 to-brand-accent flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 rounded-xl bg-brand-700 flex items-center justify-center">
                 <FontAwesomeIcon icon={faLightbulb} className="w-5 h-5 text-white" />
               </div>
               <span className="text-2xl font-black text-white tracking-tight">Lumiora</span>
@@ -99,7 +93,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-brand-300 hover:text-white hover:translate-x-1 inline-block transition-all duration-200"
+                      className="text-sm text-brand-300 hover:text-white transition-colors duration-200"
                     >
                       {link.label}
                     </Link>
@@ -111,7 +105,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-gray-200 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="border-t border-brand-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-brand-400">
             © {new Date().getFullYear()} Lumiora. All rights reserved.
           </p>
@@ -123,7 +117,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-9 h-9 rounded-xl bg-white/5 border border-gray-200 flex items-center justify-center text-brand-400 hover:text-white hover:bg-white/15 hover:border-white/30 transition-all duration-200"
+                className="w-9 h-9 rounded-xl bg-white/5 border border-brand-800 flex items-center justify-center text-brand-400 hover:text-white hover:bg-white/10 hover:border-brand-600 transition-colors duration-200"
               >
                 <FontAwesomeIcon icon={icon} className="w-4 h-4" />
               </a>

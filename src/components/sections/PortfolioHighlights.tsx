@@ -14,7 +14,6 @@ const projects = [
     title: "FinTech Dashboard",
     category: "Web Development",
     desc: "A real-time analytics platform processing $2B+ in daily transactions.",
-    gradient: "from-brand-700 to-brand-900",
     tags: ["Next.js", "TypeScript", "AWS"],
     metrics: "↑ 340% performance",
   },
@@ -22,7 +21,6 @@ const projects = [
     title: "MedCare Mobile",
     category: "Mobile App",
     desc: "Telemedicine app connecting 50,000+ patients with healthcare providers.",
-    gradient: "from-brand-700 to-brand-600",
     tags: ["React Native", "Node.js", "HIPAA"],
     metrics: "4.9★ App Store",
   },
@@ -30,7 +28,6 @@ const projects = [
     title: "NeuralShop AI",
     category: "AI Solutions",
     desc: "LLM-powered e-commerce personalisation engine boosting conversions by 87%.",
-    gradient: "from-brand-700 to-brand-600",
     tags: ["Python", "GPT-4", "ML"],
     metrics: "+87% conversions",
   },
@@ -38,7 +35,6 @@ const projects = [
     title: "CloudOps Platform",
     category: "DevOps",
     desc: "Multi-cloud infrastructure orchestration for Fortune 500 enterprise.",
-    gradient: "from-brand-700 to-brand-600",
     tags: ["Kubernetes", "Terraform", "GCP"],
     metrics: "99.99% uptime",
   },
@@ -52,7 +48,11 @@ const portfolioCategories = [
 
 export default function PortfolioHighlights() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-transparent relative overflow-hidden">
+      {/* Background bubbles */}
+      <div className="absolute top-10 left-10 w-44 h-44 rounded-full bg-brand-200/20 border border-brand-200/30 pointer-events-none" />
+      <div className="absolute bottom-20 right-10 w-64 h-64 rounded-full bg-brand-100/35 border border-brand-200/40 pointer-events-none" />
+
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
           <SectionHeader
@@ -73,10 +73,9 @@ export default function PortfolioHighlights() {
         {/* Projects grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
           {projects.map((proj) => (
-            <div key={proj.title} className="glass-card rounded-2xl overflow-hidden group">
-              {/* Gradient banner */}
-              <div className={`h-36 bg-gradient-to-br ${proj.gradient} relative overflow-hidden`}>
-                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_50%_50%,white,transparent_70%)]" />
+            <div key={proj.title} className="bg-white border border-gray-200 shadow-sm rounded-2xl overflow-hidden hover:shadow-md transition-shadow duration-200">
+              {/* Solid banner */}
+              <div className="h-36 bg-brand-700 relative">
                 <div className="absolute bottom-3 left-4">
                   <span className="text-xs font-semibold text-white/80 uppercase tracking-wider">
                     {proj.category}
@@ -106,8 +105,8 @@ export default function PortfolioHighlights() {
         <div className="grid sm:grid-cols-3 gap-5">
           {portfolioCategories.map((cat) => (
             <Link key={cat.label} href={cat.href} className="group">
-              <div className="glass-card rounded-2xl p-6 flex items-center gap-4 bg-gradient-to-br from-brand-50 to-brand-100 border border-brand-200">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-700 to-brand-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+              <div className="bg-white border border-gray-200 shadow-sm rounded-2xl p-6 flex items-center gap-4 hover:shadow-md hover:border-brand-200 transition-all duration-200">
+                <div className="w-12 h-12 rounded-2xl bg-brand-700 flex items-center justify-center">
                   <FontAwesomeIcon icon={cat.icon} className="w-5 h-5 text-white" />
                 </div>
                 <div>

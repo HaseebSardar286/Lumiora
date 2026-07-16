@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 
@@ -18,8 +18,9 @@ export default function GlassCard({
   return (
     <div
       className={`
-        glass-card rounded-2xl ${padding}
-        ${hover ? "hover:shadow-2xl cursor-pointer" : ""}
+        bg-white border border-gray-200 shadow-sm rounded-2xl ${padding}
+        ${hover ? "hover:shadow-md" : ""}
+        transition-shadow duration-200
         ${className}
       `}
     >
