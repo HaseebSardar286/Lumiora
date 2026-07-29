@@ -138,4 +138,22 @@ body {
   animation: float-bubble-fast 5s ease-in-out infinite;
 }
 
+/* ─── Infinite Marquee Slider ────────────────────────────────────── */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
 
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 55s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}

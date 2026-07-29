@@ -6,26 +6,26 @@ import SectionHeader from "@/components/ui/SectionHeader";
 const testimonials = [
   {
     quote:
-      "Lumiora completely transformed our digital presence. Our conversion rate jumped 240% within 3 months of launching the new platform.",
-    name: "Sarah Chen",
-    role: "CEO, NovaTech Ventures",
-    initials: "SC",
+      "Perfect and clear understanding!",
+    name: "glenngoosens",
+    role: "Fiverr Client",
+    initials: "GG",
     rating: 5,
   },
   {
     quote:
-      "The AI solution Lumiora built for us processes 10 million events per day with incredible accuracy. Truly world-class engineering.",
-    name: "Marcus Thompson",
-    role: "CTO, DataFlow Inc.",
-    initials: "MT",
+      "Helped me fix out my machine learning script that I had been spending weeks with GPT trying to fix and get working. Will use again.",
+    name: "hometeethwhite",
+    role: "Fiverr Client",
+    initials: "HT",
     rating: 5,
   },
   {
     quote:
-      "From design to deployment, the team delivered exceptional quality. Our mobile app is now rated 4.9 stars with 50k users.",
-    name: "Priya Patel",
-    role: "Founder, MedCare Digital",
-    initials: "PP",
+      "Professional, on time and great work",
+    name: "yousef_alh1",
+    role: "Fiverr Client",
+    initials: "YA",
     rating: 5,
   },
 ];

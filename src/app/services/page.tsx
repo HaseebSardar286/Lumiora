@@ -1,6 +1,7 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import PageHero from "@/components/ui/PageHero";
 import ServicesOverview from "@/components/sections/ServicesOverview";
+import TechStackSlider from "@/components/sections/TechStackSlider";
 import CTA from "@/components/sections/CTA";
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export default function ServicesPage() {
         breadcrumbs={[{ label: "Services" }]}
       />
       <ServicesOverview />
+      <TechStackSlider />
       <CTA />
     </>
   );

@@ -19,42 +19,63 @@ const services = [
     title: "Web Development",
     desc: "Blazing-fast, SEO-optimised web apps built with the latest frameworks and cloud-native architectures.",
     href: "/services/web-development",
+    gradient: "from-blue-600 to-cyan-500",
+    shadow: "hover:shadow-blue-500/10 hover:border-blue-300",
+    text: "text-blue-600",
   },
   {
     icon: faMobileScreen,
     title: "Mobile Apps",
     desc: "Native and cross-platform apps for iOS & Android that delight users and drive engagement.",
     href: "/services/mobile-apps",
+    gradient: "from-indigo-600 to-purple-500",
+    shadow: "hover:shadow-indigo-500/10 hover:border-indigo-300",
+    text: "text-indigo-600",
   },
   {
     icon: faBrain,
     title: "AI Solutions",
     desc: "Intelligent automation, ML models, and LLM-powered products that give you a competitive edge.",
     href: "/services/ai-solutions",
+    gradient: "from-rose-600 to-pink-500",
+    shadow: "hover:shadow-rose-500/10 hover:border-rose-300",
+    text: "text-rose-600",
   },
   {
     icon: faShield,
     title: "QA & Testing",
     desc: "Rigorous quality assurance with automated test suites ensuring every release is bulletproof.",
     href: "/services/qa-testing",
+    gradient: "from-emerald-600 to-teal-500",
+    shadow: "hover:shadow-emerald-500/10 hover:border-emerald-300",
+    text: "text-emerald-600",
   },
   {
     icon: faClipboardList,
     title: "Product Management",
     desc: "Strategic product leadership that aligns technology with your business goals and user needs.",
     href: "/services/product-management",
+    gradient: "from-amber-500 to-orange-500",
+    shadow: "hover:shadow-amber-500/10 hover:border-amber-300",
+    text: "text-amber-600",
   },
   {
     icon: faInfinity,
     title: "DevOps",
     desc: "CI/CD pipelines, cloud infrastructure, and SRE practices for maximum reliability and velocity.",
     href: "/services/devops",
+    gradient: "from-violet-600 to-fuchsia-500",
+    shadow: "hover:shadow-violet-500/10 hover:border-violet-300",
+    text: "text-violet-600",
   },
   {
     icon: faPenRuler,
     title: "UI/UX Design",
     desc: "Human-centred design that transforms complexity into intuitive, beautiful user experiences.",
     href: "/services/ui-ux-design",
+    gradient: "from-fuchsia-600 to-rose-500",
+    shadow: "hover:shadow-fuchsia-500/10 hover:border-fuchsia-300",
+    text: "text-fuchsia-600",
   },
 ];
 
@@ -83,19 +104,22 @@ export default function ServicesOverview() {
           </Link>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {services.map((svc) => (
             <Link key={svc.title} href={svc.href} className="group block">
-              <div className="bg-white border border-gray-200 shadow-sm rounded-2xl p-6 h-full hover:shadow-md hover:border-brand-200 transition-all duration-200">
-                {/* Icon */}
-                <div className="w-12 h-12 rounded-2xl bg-brand-700 flex items-center justify-center mb-4">
+              <div className={`bg-white border border-gray-150 shadow-sm hover:shadow-xl hover:-translate-y-2 rounded-3xl p-6 h-full transition-all duration-300 relative overflow-hidden group/card ${svc.shadow}`}>
+                {/* Subtle colorful glow inside card */}
+                <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl ${svc.gradient} opacity-0 group-hover/card:opacity-[0.04] rounded-full blur-xl transition-opacity duration-300 pointer-events-none`} />
+
+                {/* Icon with custom gradient background */}
+                <div className={`w-12 h-12 rounded-2xl bg-gradient-to-tr ${svc.gradient} flex items-center justify-center mb-5 shadow-sm transform group-hover:scale-110 transition-transform duration-300`}>
                   <FontAwesomeIcon icon={svc.icon} className="w-5 h-5 text-white" />
                 </div>
 
                 <h3 className="font-bold text-slate-900 mb-2 text-base">{svc.title}</h3>
                 <p className="text-sm text-gray-500 leading-relaxed">{svc.desc}</p>
 
-                <div className="mt-4 flex items-center gap-1 text-xs font-semibold text-brand-600 group-hover:gap-2 transition-all">
+                <div className={`mt-5 flex items-center gap-1 text-xs font-bold ${svc.text} group-hover:gap-2 transition-all`}>
                   Learn more{" "}
                   <FontAwesomeIcon icon={faArrowRight} className="w-3 h-3" />
                 </div>

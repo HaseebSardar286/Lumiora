@@ -3,6 +3,7 @@ import Stats from "@/components/sections/Stats";
 import ServicesOverview from "@/components/sections/ServicesOverview";
 import PortfolioHighlights from "@/components/sections/PortfolioHighlights";
 import ProcessSteps from "@/components/sections/ProcessSteps";
+import TechStackSlider from "@/components/sections/TechStackSlider";
 import Testimonials from "@/components/sections/Testimonials";
 import CTA from "@/components/sections/CTA";
 import type { Metadata } from "next";
@@ -21,6 +22,7 @@ export default function Home() {
       <ServicesOverview />
       <PortfolioHighlights />
       <ProcessSteps />
+      <TechStackSlider />
       <Testimonials />
       <CTA />
     </>

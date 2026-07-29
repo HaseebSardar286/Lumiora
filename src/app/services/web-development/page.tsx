@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PageHero from "@/components/ui/PageHero";
 import GlassCard from "@/components/ui/GlassCard";
 import CTA from "@/components/sections/CTA";
+import TechStackSlider from "@/components/sections/TechStackSlider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlobe, faCheckCircle, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
@@ -73,18 +74,7 @@ export default function WebDevelopmentPage() {
       </section>
 
       {/* Tech stack */}
-      <section className="py-16 bg-gray-50">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 className="text-2xl font-black text-slate-900 text-center mb-8">Our Tech Stack</h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            {["Next.js", "React", "TypeScript", "Node.js", "PostgreSQL", "Redis", "AWS", "Vercel", "Docker", "GraphQL", "Prisma", "Tailwind CSS"].map((tech) => (
-              <span key={tech} className="px-4 py-2 bg-white border border-gray-200 rounded-xl text-sm font-semibold text-brand-850 text-slate-700">
-                {tech}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TechStackSlider />
 
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

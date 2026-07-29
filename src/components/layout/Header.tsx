@@ -32,7 +32,7 @@ const servicesMenu = [
 ];
 
 const portfolioMenu = [
-  { label: "Case Studies", href: "/portfolio/case-studies", icon: faBriefcase },
+  // { label: "Case Studies", href: "/portfolio/case-studies", icon: faBriefcase },
   { label: "Live Projects", href: "/portfolio/live-projects", icon: faImages },
   { label: "Testimonials", href: "/portfolio/testimonials", icon: faComments },
 ];
