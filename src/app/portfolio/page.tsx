@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/ui/PageHero";
 import PortfolioHighlights from "@/components/sections/PortfolioHighlights";
-import Testimonials from "@/components/sections/Testimonials";
 import CTA from "@/components/sections/CTA";
 
 export const metadata: Metadata = {
@@ -21,7 +20,6 @@ export default function PortfolioPage() {
         gradient="from-brand-700 via-brand-700 to-brand-600"
       />
       <PortfolioHighlights />
-      <Testimonials />
       <CTA />
     </>
   );

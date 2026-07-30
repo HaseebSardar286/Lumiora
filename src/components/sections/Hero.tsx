@@ -24,29 +24,10 @@ export default function Hero() {
           {/* Left content */}
           <div className="animate-fade-in-up">
             {/* Trust badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm mb-8">
-              <div className="flex -space-x-1">
-                {[
-                  "bg-brand-400",
-                  "bg-brand-500",
-                  "bg-brand-400",
-                  "bg-brand-400",
-                ].map((color, i) => (
-                  <div
-                    key={i}
-                    className={`w-6 h-6 rounded-full ${color} border-2 border-white flex items-center justify-center text-xs text-white font-bold`}
-                  >
-                    {["A", "B", "C", "D"][i]}
-                  </div>
-                ))}
-              </div>
-              <span className="text-sm text-gray-600 font-medium">
-                Trusted by growing <span className="text-brand-700 font-bold">businesses</span>
-              </span>
-              <div className="flex gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <FontAwesomeIcon key={i} icon={faStar} className="w-3 h-3 text-amber-400" />
-                ))}
+            <div className="inline-flex flex-wrap items-center gap-x-3 gap-y-1.5 px-4.5 py-2.5 rounded-full bg-white border border-gray-200 shadow-sm mb-8 animate-fade-in-up">
+              <div className="flex items-center gap-1.5">
+                <FontAwesomeIcon icon={faCheckCircle} className="w-4 h-4 text-emerald-500" />
+                <span className="text-xs text-slate-800 font-bold tracking-tight">20+ Projects Delivered Successfully</span>
               </div>
             </div>
 
@@ -174,13 +155,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        <span className="text-xs text-gray-400 font-medium tracking-widest uppercase">Scroll</span>
-        <div className="w-5 h-8 rounded-full border-2 border-brand-300 flex items-start justify-center p-1">
-          <div className="w-1 h-2 bg-brand-500 rounded-full" />
-        </div>
-      </div>
     </section>
   );
 }

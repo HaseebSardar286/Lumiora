@@ -10,6 +10,7 @@ interface PageHeroProps {
   subtitle?: string;
   breadcrumbs?: { label: string; href?: string }[];
   gradient?: string;
+  compact?: boolean;
 }
 
 export default function PageHero({
@@ -18,9 +19,10 @@ export default function PageHero({
   highlight,
   subtitle,
   breadcrumbs,
+  compact,
 }: PageHeroProps) {
   return (
-    <section className="relative pt-16 pb-12 bg-transparent border-b border-gray-100 overflow-hidden">
+    <section className={`relative bg-transparent border-b border-gray-100 overflow-hidden ${compact ? "pt-8 pb-6" : "pt-16 pb-12"}`}>
       {/* Background bubbles */}
       <div className="absolute top-5 right-10 w-40 h-40 rounded-full bg-brand-200/20 border border-brand-200/30 pointer-events-none" />
       <div className="absolute bottom-5 left-10 w-48 h-48 rounded-full bg-brand-100/35 border border-brand-200/40 pointer-events-none" />
@@ -47,16 +49,16 @@ export default function PageHero({
 
         <div className="max-w-3xl">
           {badge && (
-            <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-brand-50 text-brand-700 border border-brand-200 mb-5">
+            <span className={`inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-brand-50 text-brand-700 border border-brand-200 ${compact ? "mb-2" : "mb-5"}`}>
               {badge}
             </span>
           )}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-tight mb-5">
+          <h1 className={`font-black text-slate-900 leading-tight ${compact ? "text-2xl md:text-3xl mb-1" : "text-4xl md:text-5xl lg:text-6xl mb-5"}`}>
             {title}{" "}
             {highlight && <span className="text-brand-700">{highlight}</span>}
           </h1>
           {subtitle && (
-            <p className="text-lg text-gray-500 leading-relaxed max-w-2xl">{subtitle}</p>
+            <p className={`leading-relaxed max-w-2xl ${compact ? "text-xs text-gray-400 mt-1" : "text-lg text-gray-500"}`}>{subtitle}</p>
           )}
         </div>
       </div>

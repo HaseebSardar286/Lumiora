@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,10 +11,7 @@ import {
   faExternalLink,
 } from "@fortawesome/free-solid-svg-icons";
 import SectionHeader from "@/components/ui/SectionHeader";
-
-import { projects } from "@/data/projects";
-
-const highlightProjects = projects.slice(0, 4);
+import { Project } from "@/data/projects";
 
 const portfolioCategories = [
   // { icon: faBriefcase, label: "Case Studies", href: "/portfolio/case-studies", count: "6+" },
@@ -21,6 +20,21 @@ const portfolioCategories = [
 ];
 
 export default function PortfolioHighlights() {
+  const [highlightProjects, setHighlightProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/projects")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.projects) {
+          setHighlightProjects(data.projects.slice(0, 4));
+        }
+      })
+      .catch((err) => console.error("Error loading portfolio highlights:", err))
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <section className="py-24 bg-transparent relative overflow-hidden">
       {/* Background bubbles */}
@@ -46,21 +60,26 @@ export default function PortfolioHighlights() {
 
         {/* Projects grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
-          {highlightProjects.map((proj) => (
-            <Link
-              key={proj.title}
-              href={`/portfolio/project/${proj.slug}`}
-              className="group bg-white border border-gray-200 shadow-sm rounded-2xl overflow-hidden hover:shadow-md transition-all duration-200 flex flex-col cursor-pointer"
-            >
-              {/* Image banner */}
-              <div className="h-36 relative overflow-hidden bg-brand-700 flex-shrink-0">
-                {proj.image && (
-                  <img
-                    src={proj.image}
-                    alt={proj.title}
-                    className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500"
-                  />
-                )}
+          {loading ? (
+            Array.from({ length: 4 }).map((_, i) => (
+              <div key={i} className="animate-pulse bg-slate-50 border border-slate-200 rounded-2xl h-[280px] flex flex-col" />
+            ))
+          ) : (
+            highlightProjects.map((proj) => (
+              <Link
+                key={proj.title}
+                href={`/portfolio/project/${proj.slug}`}
+                className="group bg-white border border-gray-200 shadow-sm rounded-2xl overflow-hidden hover:shadow-md transition-all duration-200 flex flex-col cursor-pointer"
+              >
+                {/* Image banner */}
+                <div className="h-36 relative overflow-hidden bg-brand-700 flex-shrink-0">
+                  {proj.image && (
+                    <img
+                      src={proj.image}
+                      alt={proj.title}
+                      className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500"
+                    />
+                  )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="absolute bottom-3 left-4 z-10">
                   <span className="text-xs font-semibold text-white uppercase tracking-wider">
@@ -91,7 +110,8 @@ export default function PortfolioHighlights() {
                 </div>
               </div>
             </Link>
-          ))}
+          ))
+        )}
         </div>
 
         {/* Category cards */}

@@ -5,14 +5,28 @@ import GlassCard from "@/components/ui/GlassCard";
 import CTA from "@/components/sections/CTA";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { projects } from "@/data/projects";
+import { Project } from "@/data/projects";
 
 export const metadata: Metadata = {
   title: "Live Projects",
   description: "Browse Lumiora's live, deployed projects across web, mobile, and AI — see our work in action.",
 };
 
-export default function LiveProjectsPage() {
+async function getProjects(): Promise<Project[]> {
+  const backendUrl = process.env.BACKEND_API_URL || "http://localhost:5000";
+  try {
+    const res = await fetch(`${backendUrl}/api/projects`, { cache: "no-store" });
+    if (!res.ok) throw new Error("Failed to fetch projects");
+    const data = await res.json();
+    return data.projects || [];
+  } catch (error) {
+    console.error("Error loading live projects:", error);
+    return [];
+  }
+}
+
+export default async function LiveProjectsPage() {
+  const projects = await getProjects();
   return (
     <>
       <PageHero badge="Live Projects" title="Production-Ready" highlight="Live Deployments"

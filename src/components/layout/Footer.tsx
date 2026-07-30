@@ -34,7 +34,6 @@ const footerLinks = {
   "Quick Links": [
     // { label: "Case Studies", href: "/portfolio/case-studies" },
     { label: "Live Projects", href: "/portfolio/live-projects" },
-    { label: "Testimonials", href: "/portfolio/testimonials" },
     { label: "Get a Quote", href: "/get-a-quote" },
     { label: "Book Consultation", href: "/book-consultation" },
   ],

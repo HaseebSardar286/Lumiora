@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import PageHero from "@/components/ui/PageHero";
 import GlassCard from "@/components/ui/GlassCard";
@@ -15,7 +15,54 @@ export default function GetAQuotePage() {
   const [budget, setBudget] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    phone: "",
+    notes: ""
+  });
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+
   const toggle = (s: string) => setSelected((prev) => prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s]);
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setError("");
+
+    try {
+      const response = await fetch("/api/quotes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          services: selected,
+          budget
+        })
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to submit quote request. Check email credentials.");
+      }
+
+      setSubmitted(true);
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || "An unexpected error occurred.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <>
@@ -55,12 +102,12 @@ export default function GetAQuotePage() {
                   <p className="text-sm text-gray-400 mb-5">Select all services that apply.</p>
                   <div className="grid grid-cols-2 gap-3">
                     {services.map((s) => (
-                      <button key={s} onClick={() => toggle(s)} className={`px-4 py-3 rounded-xl text-sm font-medium border transition-all ${selected.includes(s) ? "bg-brand-700 text-white border-indigo-600 shadow-md" : "border-brand-200 text-gray-600 hover:border-brand-400"}`}>
+                      <button key={s} onClick={() => toggle(s)} className={`px-4 py-3 rounded-xl text-sm font-medium border transition-all cursor-pointer ${selected.includes(s) ? "bg-brand-700 text-white border-indigo-600 shadow-md" : "border-brand-200 text-gray-600 hover:border-brand-400"}`}>
                         {s}
                       </button>
                     ))}
                   </div>
-                  <button onClick={() => setStep(2)} disabled={selected.length === 0} className="mt-6 w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-brand-700 to-brand-900 text-white font-bold rounded-xl disabled:opacity-40 hover:-translate-y-0.5 transition-all">
+                  <button onClick={() => setStep(2)} disabled={selected.length === 0} className="mt-6 w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-brand-700 to-brand-900 text-white font-bold rounded-xl disabled:opacity-40 hover:-translate-y-0.5 transition-all cursor-pointer">
                     Next <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
                   </button>
                 </div>
@@ -72,14 +119,14 @@ export default function GetAQuotePage() {
                   <p className="text-sm text-gray-400 mb-5">This helps us propose the right solution.</p>
                   <div className="space-y-3">
                     {budgets.map((b) => (
-                      <button key={b} onClick={() => setBudget(b)} className={`w-full text-left px-4 py-3 rounded-xl text-sm font-medium border transition-all ${budget === b ? "bg-brand-700 text-white border-indigo-600 shadow-md" : "border-brand-200 text-gray-600 hover:border-brand-400"}`}>
+                      <button key={b} onClick={() => setBudget(b)} className={`w-full text-left px-4 py-3 rounded-xl text-sm font-medium border transition-all cursor-pointer ${budget === b ? "bg-brand-700 text-white border-indigo-600 shadow-md" : "border-brand-200 text-gray-600 hover:border-brand-400"}`}>
                         {b}
                       </button>
                     ))}
                   </div>
                   <div className="flex gap-3 mt-6">
-                    <button onClick={() => setStep(1)} className="flex-1 py-3 border-2 border-brand-300 text-brand-700 font-bold rounded-xl hover:bg-brand-50 transition-all">Back</button>
-                    <button onClick={() => setStep(3)} disabled={!budget} className="flex-1 flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-brand-700 to-brand-900 text-white font-bold rounded-xl disabled:opacity-40 hover:-translate-y-0.5 transition-all">
+                    <button onClick={() => setStep(1)} className="flex-1 py-3 border-2 border-brand-300 text-brand-700 font-bold rounded-xl hover:bg-brand-50 transition-all cursor-pointer">Back</button>
+                    <button onClick={() => setStep(3)} disabled={!budget} className="flex-1 flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-brand-700 to-brand-900 text-white font-bold rounded-xl disabled:opacity-40 hover:-translate-y-0.5 transition-all cursor-pointer">
                       Next <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
                     </button>
                   </div>
@@ -87,30 +134,42 @@ export default function GetAQuotePage() {
               )}
 
               {step === 3 && (
-                <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}>
+                <form onSubmit={handleFormSubmit}>
                   <h3 className="font-black text-xl text-slate-900 mb-1">Your Contact Details</h3>
                   <p className="text-sm text-gray-400 mb-5">We&apos;ll use these to send your proposal.</p>
+                  
+                  {error && (
+                    <div className="p-4 mb-4 text-xs font-bold bg-rose-50 border border-rose-250 text-rose-850 rounded-xl leading-relaxed">
+                      ⚠️ {error}
+                    </div>
+                  )}
+
                   <div className="space-y-4">
-                    {[
-                      { label: "Full Name", type: "text", placeholder: "Alex Morgan" },
-                      { label: "Work Email", type: "email", placeholder: "alex@company.com" },
-                      { label: "Company", type: "text", placeholder: "Company Inc." },
-                      { label: "Phone (optional)", type: "tel", placeholder: "+1 555 000 0000" },
-                    ].map(({ label, type, placeholder }) => (
-                      <div key={label}>
-                        <label className="block text-xs font-semibold text-gray-500 mb-1.5">{label}</label>
-                        <input type={type} required={!label.includes("optional")} className="w-full px-4 py-2.5 rounded-xl border border-brand-200 bg-white/60 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-400 transition-all" placeholder={placeholder} />
-                      </div>
-                    ))}
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-500 mb-1.5">Full Name</label>
+                      <input type="text" name="name" required value={formData.name} onChange={handleInputChange} className="w-full px-4 py-2.5 rounded-xl border border-brand-200 bg-white/60 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-400 transition-all" placeholder="Alex Morgan" />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-500 mb-1.5">Work Email</label>
+                      <input type="email" name="email" required value={formData.email} onChange={handleInputChange} className="w-full px-4 py-2.5 rounded-xl border border-brand-200 bg-white/60 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-400 transition-all" placeholder="alex@company.com" />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-500 mb-1.5">Company</label>
+                      <input type="text" name="company" value={formData.company} onChange={handleInputChange} className="w-full px-4 py-2.5 rounded-xl border border-brand-200 bg-white/60 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-400 transition-all" placeholder="Company Inc." />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-500 mb-1.5">Phone (optional)</label>
+                      <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} className="w-full px-4 py-2.5 rounded-xl border border-brand-200 bg-white/60 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-400 transition-all" placeholder="+1 555 000 0000" />
+                    </div>
                     <div>
                       <label className="block text-xs font-semibold text-gray-500 mb-1.5">Project Description</label>
-                      <textarea rows={3} className="w-full px-4 py-2.5 rounded-xl border border-brand-200 bg-white/60 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-400 transition-all resize-none" placeholder="Brief overview of your project..." />
+                      <textarea rows={3} name="notes" required value={formData.notes} onChange={handleInputChange} className="w-full px-4 py-2.5 rounded-xl border border-brand-200 bg-white/60 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-400 transition-all resize-none" placeholder="Brief overview of your project..." />
                     </div>
                   </div>
                   <div className="flex gap-3 mt-6">
-                    <button type="button" onClick={() => setStep(2)} className="flex-1 py-3 border-2 border-brand-300 text-brand-700 font-bold rounded-xl hover:bg-brand-50 transition-all">Back</button>
-                    <button type="submit" className="flex-1 py-3 bg-gradient-to-r from-brand-700 to-brand-600 text-white font-bold rounded-xl shadow-lg hover:-translate-y-0.5 transition-all">
-                      Submit Request
+                    <button type="button" onClick={() => setStep(2)} className="flex-1 py-3 border-2 border-brand-300 text-brand-700 font-bold rounded-xl hover:bg-brand-50 transition-all cursor-pointer">Back</button>
+                    <button type="submit" disabled={submitting} className="flex-1 py-3 bg-gradient-to-r from-brand-700 to-brand-600 text-white font-bold rounded-xl shadow-lg hover:-translate-y-0.5 transition-all disabled:opacity-45 cursor-pointer">
+                      {submitting ? "Submitting..." : "Submit Request"}
                     </button>
                   </div>
                 </form>

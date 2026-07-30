@@ -6,16 +6,42 @@ import GlassCard from "@/components/ui/GlassCard";
 import CTA from "@/components/sections/CTA";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faExternalLink, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { projects } from "@/data/projects";
+import { Project } from "@/data/projects";
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
+async function getProject(slug: string): Promise<Project | null> {
+  const backendUrl = process.env.BACKEND_API_URL || "http://localhost:5000";
+  try {
+    const res = await fetch(`${backendUrl}/api/projects/${slug}`, { cache: "no-store" });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.project || null;
+  } catch (error) {
+    console.error(`Error loading project details for ${slug}:`, error);
+    return null;
+  }
+}
+
+async function getAllProjects(): Promise<Project[]> {
+  const backendUrl = process.env.BACKEND_API_URL || "http://localhost:5000";
+  try {
+    const res = await fetch(`${backendUrl}/api/projects`, { cache: "no-store" });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.projects || [];
+  } catch (error) {
+    console.error("Error loading all projects for paths:", error);
+    return [];
+  }
+}
+
 // Generate metadata dynamically based on the project slug
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const project = projects.find((p) => p.slug === slug);
+  const project = await getProject(slug);
 
   if (!project) {
     return {
@@ -31,6 +57,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 // Statically pre-generate paths for high-performance static rendering
 export async function generateStaticParams() {
+  const projects = await getAllProjects();
   return projects.map((p) => ({
     slug: p.slug,
   }));
@@ -38,7 +65,7 @@ export async function generateStaticParams() {
 
 export default async function ProjectDetailPage({ params }: Props) {
   const { slug } = await params;
-  const project = projects.find((p) => p.slug === slug);
+  const project = await getProject(slug);
 
   if (!project) {
     notFound();
