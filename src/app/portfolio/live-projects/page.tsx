@@ -9,7 +9,7 @@ import { Project } from "@/data/projects";
 
 export const metadata: Metadata = {
   title: "Live Projects",
-  description: "Browse Lumiora's live, deployed projects across web, mobile, and AI — see our work in action.",
+  description: "Browse 8BitField's live, deployed projects across web, mobile, and AI — see our work in action.",
 };
 
 async function getProjects(): Promise<Project[]> {

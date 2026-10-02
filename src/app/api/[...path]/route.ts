@@ -12,9 +12,10 @@ async function proxyRequest(req: NextRequest, segments: string[]) {
   const search = req.nextUrl.search || "";
   const targetUrl = `${BACKEND_URL}/api/${path}${search}`;
 
-  // Forward the original request body and headers (drop host to avoid conflicts)
   const headers = new Headers(req.headers);
   headers.delete("host");
+  // Let fetch set Content-Length from the body we pass
+  headers.delete("content-length");
 
   const init: RequestInit = {
     method: req.method,
@@ -22,19 +23,36 @@ async function proxyRequest(req: NextRequest, segments: string[]) {
   };
 
   if (!["GET", "HEAD"].includes(req.method)) {
-    init.body = await req.text();
+    const contentType = req.headers.get("content-type") || "";
+    // Preserve multipart boundaries for file uploads; use binary for everything else.
+    if (contentType.includes("multipart/form-data")) {
+      init.body = await req.arrayBuffer();
+    } else {
+      init.body = await req.arrayBuffer();
+    }
   }
 
   try {
     const backendRes = await fetch(targetUrl, init);
-    const body = await backendRes.text();
+    const contentType =
+      backendRes.headers.get("Content-Type") || "application/json";
 
+    // Binary responses (rare via /api) vs text/json
+    if (
+      contentType.startsWith("image/") ||
+      contentType.includes("octet-stream")
+    ) {
+      const buffer = await backendRes.arrayBuffer();
+      return new NextResponse(buffer, {
+        status: backendRes.status,
+        headers: { "Content-Type": contentType },
+      });
+    }
+
+    const body = await backendRes.text();
     return new NextResponse(body, {
       status: backendRes.status,
-      headers: {
-        "Content-Type":
-          backendRes.headers.get("Content-Type") || "application/json",
-      },
+      headers: { "Content-Type": contentType },
     });
   } catch (err) {
     console.error(`[proxy] Failed to reach backend at ${targetUrl}:`, err);

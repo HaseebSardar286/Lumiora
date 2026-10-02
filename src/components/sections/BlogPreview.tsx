@@ -47,7 +47,7 @@ export default function BlogPreview() {
             badge="Insights"
             title="From Our"
             highlight="Blog"
-            subtitle="Thought leadership and technical deep-dives from the Lumiora team."
+            subtitle="Thought leadership and technical deep-dives from the 8BitField team."
             align="left"
           />
           <Link

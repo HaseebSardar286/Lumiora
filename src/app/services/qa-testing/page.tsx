@@ -36,7 +36,7 @@ export default function QATestingPage() {
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              {[{ label: "Tests Run", value: "50k+" }, { label: "Bug Detection Rate", value: "99.2%" }, { label: "Avg Defect Rate", value: "1.8%" }, { label: "Coverage", value: "98%" }].map((stat) => (
+              {[{ label: "Focus", value: "Quality" }, { label: "Approach", value: "Practical" }, { label: "Coverage", value: "Targeted" }, { label: "Delivery", value: "Iterative" }].map((stat) => (
                 <GlassCard key={stat.label} className="text-center hover:-translate-y-1 hover:shadow-lg hover:border-emerald-200 transition-all duration-300">
                   <p className="text-3xl font-black text-emerald-600 mb-1">{stat.value}</p>
                   <p className="text-xs text-gray-500">{stat.label}</p>
@@ -47,7 +47,7 @@ export default function QATestingPage() {
         </div>
       </section>
       <section className="py-16 bg-white text-center">
-        <a href="/get-a-quote" className="inline-flex items-center gap-2 px-8 py-4 bg-emerald-600 text-white font-bold rounded-2xl shadow-sm hover:bg-emerald-700 transition-all duration-200">
+        <a href="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-emerald-600 text-white font-bold rounded-2xl shadow-sm hover:bg-emerald-700 transition-all duration-200">
           Get a QA Audit <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
         </a>
       </section>

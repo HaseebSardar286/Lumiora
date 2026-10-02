@@ -1,44 +1,70 @@
 import "@/lib/fontawesome";
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Outfit, Source_Sans_3 } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import AnalyticsProvider from "@/components/analytics/AnalyticsProvider";
+import { BRAND } from "@/lib/brand";
 
-const roboto = Roboto({
-  weight: ["300", "400", "500", "700", "900"],
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-roboto",
+  variable: "--font-outfit",
+  display: "swap",
+});
+
+const sourceSans = Source_Sans_3({
+  subsets: ["latin"],
+  variable: "--font-source",
   display: "swap",
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(BRAND.siteUrl),
   title: {
-    default: "Lumiora — Illuminating Digital Excellence",
-    template: "%s | Lumiora",
+    default: BRAND.seoTitle,
+    template: `%s | ${BRAND.name}`,
   },
-  description:
-    "Lumiora is a premier technology company delivering cutting-edge web development, mobile apps, AI solutions, and digital transformation services that illuminate your path to success.",
+  description: BRAND.seoDescription,
   keywords: [
-    "web development",
+    "custom software development",
+    "SaaS development",
+    "web applications",
     "mobile apps",
-    "AI solutions",
-    "UI/UX design",
-    "DevOps",
-    "QA testing",
-    "digital agency",
+    "backend systems",
+    "AI ML solutions",
+    "MVP development",
+    "business applications",
+    "8BitField",
   ],
-  authors: [{ name: "Lumiora" }],
+  authors: [{ name: BRAND.name }],
+  icons: {
+    icon: BRAND.logoPath,
+    apple: BRAND.logoPath,
+  },
   openGraph: {
-    title: "Lumiora — Illuminating Digital Excellence",
-    description: "Premium technology solutions for forward-thinking businesses.",
+    title: BRAND.seoTitle,
+    description: BRAND.seoDescription,
     type: "website",
     locale: "en_US",
+    siteName: BRAND.name,
+    url: BRAND.siteUrl,
+    images: [
+      {
+        url: BRAND.logoPath,
+        alt: BRAND.logoAlt,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lumiora — Illuminating Digital Excellence",
-    description: "Premium technology solutions for forward-thinking businesses.",
+    title: BRAND.seoTitle,
+    description: BRAND.seoDescription,
+    images: [BRAND.logoPath],
+  },
+  alternates: {
+    canonical: BRAND.siteUrl,
   },
 };
 
@@ -48,14 +74,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${roboto.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col font-sans relative overflow-x-hidden bg-white">
-        {/* Floating background patterns */}
-        <div className="fixed top-1/4 -left-12 w-48 h-48 rounded-full bg-brand-100/30 border border-brand-200/40 pointer-events-none z-[-1] animate-float-slow" />
-        <div className="fixed top-2/3 -right-16 w-60 h-60 rounded-full bg-brand-200/20 border border-brand-200/30 pointer-events-none z-[-1] animate-float-fast" style={{ animationDelay: "1s" }} />
-        <div className="fixed top-10 right-10 w-24 h-24 rounded-full bg-brand-100/20 border border-brand-200/35 pointer-events-none z-[-1] animate-float-slow" style={{ animationDelay: "2s" }} />
-        <div className="fixed bottom-10 left-10 w-32 h-32 rounded-full bg-brand-200/25 border border-brand-200/40 pointer-events-none z-[-1] animate-float-fast" style={{ animationDelay: "3s" }} />
-
+    <html lang="en" className={`${outfit.variable} ${sourceSans.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col font-sans relative overflow-x-hidden bg-white text-slate-600">
+        <Suspense fallback={null}>
+          <AnalyticsProvider />
+        </Suspense>
         <Header />
         <main className="w-full flex-1 relative z-10">{children}</main>
         <Footer />

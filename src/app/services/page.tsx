@@ -7,17 +7,17 @@ import CTA from "@/components/sections/CTA";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Explore Lumiora's full suite of technology services: Web Development, Mobile Apps, AI Solutions, QA, DevOps, UI/UX Design, and Product Management.",
+    "8BitField builds business applications, SaaS & MVPs, web & backend systems, mobile apps, and practical AI/ML solutions.",
 };
 
 export default function ServicesPage() {
   return (
     <>
       <PageHero
-        badge="Our Services"
-        title="Everything You Need to"
-        highlight="Build & Scale"
-        subtitle="From initial concept through to post-launch growth, Lumiora provides every technology capability your business needs under one roof."
+        badge="Services"
+        title="What We"
+        highlight="Build"
+        subtitle="Custom software around your actual business requirements — web, backend, mobile, and AI/ML."
         breadcrumbs={[{ label: "Services" }]}
       />
       <ServicesOverview />

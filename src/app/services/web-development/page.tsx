@@ -58,13 +58,13 @@ export default function WebDevelopmentPage() {
 
             <div className="grid grid-cols-2 gap-4">
               {[
-                { label: "Projects Delivered", value: "15+" },
-                { label: "Avg Load Time", value: "<1s" },
-                { label: "Core Web Vitals", value: "98/100" },
-                { label: "Client Satisfaction", value: "95%" },
+                { label: "Focus", value: "Custom Apps" },
+                { label: "Stack", value: "Modern Web" },
+                { label: "Delivery", value: "Iterative" },
+                { label: "Support", value: "Available" },
               ].map((stat) => (
                 <GlassCard key={stat.label} className="text-center">
-                  <p className="text-3xl font-black text-brand-700 mb-1">{stat.value}</p>
+                  <p className="text-xl font-bold text-brand-700 mb-1">{stat.value}</p>
                   <p className="text-xs text-gray-500">{stat.label}</p>
                 </GlassCard>
               ))}
@@ -79,7 +79,7 @@ export default function WebDevelopmentPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h3 className="text-2xl font-black text-slate-900 mb-4">Ready to build your next web platform?</h3>
-          <a href="/get-a-quote" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-700 text-white font-bold rounded-2xl shadow-sm hover:bg-brand-800 transition-colors duration-200">
+          <a href="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-700 text-white font-bold rounded-2xl shadow-sm hover:bg-brand-800 transition-colors duration-200">
             Get a Free Quote <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
           </a>
         </div>

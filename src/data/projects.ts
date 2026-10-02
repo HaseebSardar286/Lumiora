@@ -12,6 +12,10 @@ export interface Project {
   screenshots: string[];
   features: string[];
   techStack: string[];
+  problem?: string;
+  solution?: string;
+  contribution?: string;
+  outcome?: string;
 }
 
 export const projects: Project[] = [];

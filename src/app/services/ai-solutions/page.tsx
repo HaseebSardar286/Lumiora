@@ -45,13 +45,13 @@ export default function AISolutionsPage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { label: "AI Projects", value: "5+" },
-                { label: "Accuracy Rate", value: "97.3%" },
-                { label: "Cost Saved", value: "35%+" },
-                { label: "Data Points / Day", value: "1M+" },
+                { label: "Focus", value: "Practical AI" },
+                { label: "Domains", value: "Vision & ML" },
+                { label: "Delivery", value: "Iterative" },
+                { label: "Support", value: "Available" },
               ].map((stat) => (
                 <GlassCard key={stat.label} className="text-center">
-                  <p className="text-3xl font-black text-brand-700 mb-1">{stat.value}</p>
+                  <p className="text-xl font-bold text-brand-700 mb-1">{stat.value}</p>
                   <p className="text-xs text-gray-500">{stat.label}</p>
                 </GlassCard>
               ))}
@@ -60,7 +60,7 @@ export default function AISolutionsPage() {
         </div>
       </section>
       <section className="py-16 bg-white text-center">
-        <a href="/get-a-quote" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-700 text-white font-bold rounded-2xl shadow-sm hover:bg-brand-800 transition-colors duration-200">
+        <a href="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-700 text-white font-bold rounded-2xl shadow-sm hover:bg-brand-800 transition-colors duration-200">
           Explore AI Solutions <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
         </a>
       </section>

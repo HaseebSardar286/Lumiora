@@ -26,15 +26,15 @@ export default function SectionHeader({
   return (
     <div className={`flex flex-col gap-3 ${alignClass} ${className}`}>
       {badge && (
-        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-brand-50 text-brand-700 border border-brand-200">
+        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-bit-cyan-50 text-bit-cyan-dark border border-bit-cyan/30">
           {badge}
         </span>
       )}
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-800 leading-tight">
         {highlight ? (
           <>
             {title}{" "}
-            <span className="text-brand-700">{highlight}</span>
+            <span className="text-bit-orange">{highlight}</span>
           </>
         ) : (
           title

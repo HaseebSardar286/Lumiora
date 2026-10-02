@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Pricing",
-  description: "Transparent, flexible pricing for web development, mobile apps, AI solutions, and managed services from Lumiora.",
+  description: "Transparent, flexible pricing for web development, mobile apps, AI solutions, and managed services from 8BitField.",
 };
 
 const plans = [

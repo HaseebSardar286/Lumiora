@@ -1,55 +1,68 @@
 @import "tailwindcss";
 
-/* ─── Navy Blue Palette ───────────────────────────────────────────── */
+/* ─── 8BitField palette (from logo: navy / cyan / orange) ─────────── */
 :root {
-  --color-primary:      #111184;   /* dark blue */
-  --color-primary-dark: #0A0A5B;   /* deeper dark blue */
-  --color-secondary:    #1A1AB3;   /* medium dark blue */
-  --color-accent:       #38BDF8;   /* sky blue accent */
-  --color-accent-light: #7DD3FC;
+  --color-primary:      #0B2A4A;   /* navy from logo outlines */
+  --color-primary-dark: #061A30;
+  --color-secondary:    #0E3D6E;
+  --color-accent:       #00A8E8;   /* cyan / FIELD blue */
+  --color-accent-light: #5AD0FF;
+  --color-orange:       #FF8A1F;   /* 8BIT / flame orange */
+  --color-orange-dark:  #E56F00;
+  --color-yellow:       #FFD24D;   /* flame highlight */
   --color-bg:           #FFFFFF;
-  --color-bg-alt:       #F5F5FC;   /* soft cool white/blue wash */
+  --color-bg-alt:       #F3F8FC;   /* cool cyan-tinted wash */
   --color-card:         #FFFFFF;
-  --color-border:       #E2E8F0;
-  --color-heading:      #111184;
+  --color-border:       #D7E6F2;
+  --color-heading:      #0B2A4A;
   --color-body:         #475569;
   --color-success:      #10B981;
 
-  /* Tint scale based on #111184 */
-  --color-primary-50:   #F5F5FC;
-  --color-primary-100:  #E9E9FA;
-  --color-primary-200:  #D0D0F5;
-  --color-primary-300:  #A7A7EC;
-  --color-primary-400:  #7474DE;
-  --color-primary-500:  #1A1AB3;
+  --color-primary-50:   #F0F8FF;
+  --color-primary-100:  #DCEEFF;
+  --color-primary-200:  #B7DBF8;
+  --color-primary-300:  #7CBDE8;
+  --color-primary-400:  #3A9BD4;
+  --color-primary-500:  #0E3D6E;
 
-  --font-roboto: 'Roboto', sans-serif;
+  --font-display: var(--font-outfit), 'Outfit', sans-serif;
+  --font-body: var(--font-source), 'Source Sans 3', sans-serif;
 }
 
 /* ─── Tailwind v4 Theme ─────────────────────────────────────────── */
 @theme {
   --color-background: var(--color-bg);
   --color-foreground: var(--color-heading);
-  --font-sans: var(--font-roboto);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-outfit), "Outfit", sans-serif;
 
-  /* Navy brand scale */
   --color-brand:         var(--color-primary);
   --color-brand-dark:    var(--color-primary-dark);
   --color-brand-sec:     var(--color-secondary);
   --color-brand-accent:  var(--color-accent);
   --color-brand-alt:     var(--color-bg-alt);
 
-  --color-brand-50:      #F5F5FC;
-  --color-brand-100:     #E9E9FA;
-  --color-brand-200:     #D0D0F5;
-  --color-brand-300:     #A7A7EC;
-  --color-brand-400:     #7474DE;
-  --color-brand-500:     #1A1AB3;
-  --color-brand-600:     #111184;
-  --color-brand-700:     #111184;
-  --color-brand-800:     #0A0A5B;
-  --color-brand-900:     #070740;
-  --color-brand-950:     #050530;
+  --color-brand-50:      #F0F8FF;
+  --color-brand-100:     #DCEEFF;
+  --color-brand-200:     #B7DBF8;
+  --color-brand-300:     #7CBDE8;
+  --color-brand-400:     #3A9BD4;
+  --color-brand-500:     #0E3D6E;
+  --color-brand-600:     #0B2A4A;
+  --color-brand-700:     #0B2A4A;
+  --color-brand-800:     #061A30;
+  --color-brand-900:     #041222;
+  --color-brand-950:     #020B16;
+
+  --color-bit-orange:       #FF8A1F;
+  --color-bit-orange-dark:  #E56F00;
+  --color-bit-orange-50:    #FFF4E8;
+  --color-bit-orange-100:   #FFE4C2;
+  --color-bit-cyan:         #00A8E8;
+  --color-bit-cyan-dark:    #0087BC;
+  --color-bit-cyan-50:      #E6F7FF;
+  --color-bit-cyan-100:     #BFEAFF;
+  --color-bit-yellow:       #FFD24D;
 }
 
 /* ─── Base ─────────────────────────────────────────────────────── */
@@ -58,9 +71,30 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--color-bg);
   color: var(--color-body);
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-body);
   line-height: 1.6;
   overflow-x: hidden;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Brand helpers — solid colors only */
+.bit-accent-bar {
+  background: #FF8A1F;
+}
+
+.gradient-text {
+  color: var(--color-orange);
+}
+
+.gradient-bg {
+  background: #FFFFFF;
+}
+
+.gradient-bg-dark {
+  background: #FFFFFF;
 }
 
 /* ─── Clean Card ───────────────────────────────────────────────── */
@@ -87,24 +121,11 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-/* ─── Text Highlight ───────────────────────────────────────────── */
-.gradient-text {
-  color: var(--color-primary);
-}
-
-.gradient-bg {
-  background: #FFFFFF;
-}
-
-.gradient-bg-dark {
-  background: #FFFFFF;
-}
-
 /* ─── Scrollbar ────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #F5F5FC; }
+::-webkit-scrollbar-track { background: #F0F8FF; }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-primary);
+  background: #00A8E8;
   border-radius: 3px;
 }
 
@@ -138,22 +159,11 @@ body {
   animation: float-bubble-fast 5s ease-in-out infinite;
 }
 
-/* ─── Infinite Marquee Slider ────────────────────────────────────── */
 @keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 55s linear infinite;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
+  animation: marquee 40s linear infinite;
 }

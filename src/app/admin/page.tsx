@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import PageHero from "@/components/ui/PageHero";
 import GlassCard from "@/components/ui/GlassCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import AdminProjectsPanel from "@/components/admin/AdminProjectsPanel";
+import type { Project } from "@/data/projects";
 import {
   faCalendarCheck,
   faClock,
@@ -61,6 +63,8 @@ interface ContactMessage {
   name: string;
   email: string;
   company: string;
+  projectType?: string;
+  budget?: string;
   notes: string;
   createdAt: string;
 }
@@ -72,6 +76,7 @@ export default function AdminPanel() {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [quotes, setQuotes] = useState<QuoteRequest[]>([]);
   const [contacts, setContacts] = useState<ContactMessage[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
   const [config, setConfig] = useState<AdminConfig>({ slots: [], blockedDates: [] });
   
   const [loading, setLoading] = useState(false);
@@ -79,7 +84,9 @@ export default function AdminPanel() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   
-  const [activeTab, setActiveTab] = useState<"bookings" | "quotes" | "contacts" | "availability">("bookings");
+  const [activeTab, setActiveTab] = useState<
+    "bookings" | "quotes" | "contacts" | "projects" | "availability"
+  >("bookings");
   const [statusFilter, setStatusFilter] = useState<string>("All");
 
   // Booking action states
@@ -103,8 +110,8 @@ export default function AdminPanel() {
     const dd = String(today.getDate()).padStart(2, "0");
     setMinDate(`${yyyy}-${mm}-${dd}`);
 
-    const savedEmail = sessionStorage.getItem("lumiora_admin_email");
-    const savedPassword = sessionStorage.getItem("lumiora_admin_password");
+    const savedEmail = sessionStorage.getItem("8bitfield_admin_email");
+    const savedPassword = sessionStorage.getItem("8bitfield_admin_password");
     if (savedEmail && savedPassword) {
       setEmail(savedEmail);
       setPassword(savedPassword);
@@ -146,15 +153,19 @@ export default function AdminPanel() {
       const contactsData = await contactsRes.json();
       setContacts(contactsData.contacts || []);
 
+      const projectsRes = await fetch("/api/projects");
+      const projectsData = await projectsRes.json();
+      setProjects(projectsData.projects || []);
+
       setIsAuthenticated(true);
-      sessionStorage.setItem("lumiora_admin_email", emailVal);
-      sessionStorage.setItem("lumiora_admin_password", passwordVal);
+      sessionStorage.setItem("8bitfield_admin_email", emailVal);
+      sessionStorage.setItem("8bitfield_admin_password", passwordVal);
     } catch (err: any) {
       console.error(err);
       setAuthError(err.message || "Failed to authenticate.");
       setIsAuthenticated(false);
-      sessionStorage.removeItem("lumiora_admin_email");
-      sessionStorage.removeItem("lumiora_admin_password");
+      sessionStorage.removeItem("8bitfield_admin_email");
+      sessionStorage.removeItem("8bitfield_admin_password");
     } finally {
       setLoading(false);
     }
@@ -168,14 +179,15 @@ export default function AdminPanel() {
   };
 
   const handleLogout = () => {
-    sessionStorage.removeItem("lumiora_admin_email");
-    sessionStorage.removeItem("lumiora_admin_password");
+    sessionStorage.removeItem("8bitfield_admin_email");
+    sessionStorage.removeItem("8bitfield_admin_password");
     setEmail("");
     setPassword("");
     setIsAuthenticated(false);
     setBookings([]);
     setQuotes([]);
     setContacts([]);
+    setProjects([]);
   };
 
   const handleApprove = async (id: string) => {
@@ -393,7 +405,7 @@ export default function AdminPanel() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-left font-medium text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-400 transition-all"
-                  placeholder="admin@lumiora.com"
+                  placeholder="admin@8bitfield.com"
                 />
                 <input
                   required
@@ -472,6 +484,16 @@ export default function AdminPanel() {
                 }`}
               >
                 Contact Messages
+              </button>
+              <button
+                onClick={() => setActiveTab("projects")}
+                className={`px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-200 cursor-pointer ${
+                  activeTab === "projects"
+                    ? "bg-brand-700 text-white shadow-sm"
+                    : "bg-white text-slate-600 border border-gray-200 hover:border-brand-500"
+                }`}
+              >
+                Portfolio
               </button>
               <button
                 onClick={() => setActiveTab("availability")}
@@ -852,7 +874,7 @@ export default function AdminPanel() {
           {activeTab === "contacts" && (
             <div className="space-y-6 animate-fade-in">
               <div className="flex justify-between items-center border-b border-gray-150 pb-4 mb-4">
-                <h3 className="text-xl font-black text-slate-900">General Contact Messages</h3>
+                <h3 className="text-xl font-black text-slate-900">Project Inquiries</h3>
                 <span className="text-xs font-bold text-gray-500 bg-white border border-gray-200 px-3.5 py-1.5 rounded-xl shadow-sm">
                   Total Messages: {contacts.length}
                 </span>
@@ -887,11 +909,23 @@ export default function AdminPanel() {
                               <span>{contact.company}</span>
                             </div>
                           )}
+                          {contact.projectType && (
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-gray-400">Type:</span>
+                              <span>{contact.projectType}</span>
+                            </div>
+                          )}
+                          {contact.budget && (
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-gray-400">Budget:</span>
+                              <span>{contact.budget}</span>
+                            </div>
+                          )}
                         </div>
 
                         <div className="bg-slate-50 border border-slate-100 rounded-xl p-3.5 text-xs text-slate-700 leading-relaxed mt-2.5">
-                          <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">Message Content</p>
-                          <p className="italic">"{contact.notes}"</p>
+                          <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">Project Description</p>
+                          <p className="italic">&quot;{contact.notes}&quot;</p>
                         </div>
 
                         <div className="text-[9px] text-gray-400 text-right mt-1.5">
@@ -903,6 +937,17 @@ export default function AdminPanel() {
                 )}
               </div>
             </div>
+          )}
+
+          {activeTab === "projects" && (
+            <AdminProjectsPanel
+              email={email}
+              password={password}
+              projects={projects}
+              onProjectsChange={setProjects}
+              onError={setError}
+              onSuccess={setSuccess}
+            />
           )}
 
           {activeTab === "availability" && (

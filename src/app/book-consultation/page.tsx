@@ -166,7 +166,7 @@ export default function BookConsultationPage() {
         badge="Book Consultation"
         title="Schedule Your"
         highlight="Free Consultation"
-        subtitle="30-minute video call with a Lumiora expert to discuss your project, goals, and how we can help."
+        subtitle="30-minute video call with a 8BitField expert to discuss your project, goals, and how we can help."
         breadcrumbs={[{ label: "Book Consultation" }]}
       />
 

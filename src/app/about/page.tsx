@@ -1,77 +1,78 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/ui/PageHero";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faLightbulb,
-  faUsers,
-  faRocket,
-  faHeart,
-  faMedal,
-  faLeaf,
-} from "@fortawesome/free-solid-svg-icons";
-import GlassCard from "@/components/ui/GlassCard";
+import Why8BitField from "@/components/sections/Why8BitField";
+import TeamSection from "@/components/sections/TeamSection";
+import EnterpriseExperience from "@/components/sections/EnterpriseExperience";
 import CTA from "@/components/sections/CTA";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About",
   description:
-    "Learn about Lumiora — our story, mission, values, and the passionate team driving digital excellence.",
+    "8BitField is a small, specialized software development team that helps startups and businesses build custom software products.",
 };
-
-const values = [
-  { icon: faLightbulb, title: "Innovation First", desc: "We push boundaries and embrace emerging technologies to stay ahead." },
-  { icon: faUsers, title: "Client-Centric", desc: "Your success is our success. We build long-term partnerships, not one-off projects." },
-  { icon: faRocket, title: "Excellence Always", desc: "We hold ourselves to the highest standards in code quality, design, and delivery." },
-  { icon: faHeart, title: "Passionate Team", desc: "We love what we do, and that passion shows in every pixel and every line of code." },
-  { icon: faMedal, title: "Proven Results", desc: "Consistent delivery with measurable outcomes for our clients." },
-  { icon: faLeaf, title: "Sustainable Growth", desc: "We build scalable solutions designed to grow with your business long-term." },
-];
 
 export default function AboutPage() {
   return (
     <>
       <PageHero
-        badge="About Lumiora"
-        title="We're on a Mission to"
-        highlight="Illuminate the Web"
-        subtitle="Lumiora is a modern technology studio dedicated to building high-quality digital products. We believe every business deserves exceptional digital experiences."
+        badge="About 8BitField"
+        title="A Small Team That Builds"
+        highlight="Serious Software"
+        subtitle="We help startups and businesses build custom software products, business applications, SaaS platforms, mobile apps, backend systems, and AI/ML solutions."
         breadcrumbs={[{ label: "About" }]}
       />
 
-      {/* Mission */}
       <section className="py-20 bg-white">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
-              <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest bg-brand-50 text-brand-700 border border-brand-200 mb-5">
-                Our Story
-              </span>
-              <h2 className="text-4xl font-black text-slate-900 mb-6 leading-tight">
-                Crafting <span className="text-brand-700">Digital Excellence</span>
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-slate-900 mb-6 leading-tight">
+                Engineering with clarity and care
               </h2>
-              <p className="text-gray-500 leading-relaxed mb-5">
-                Lumiora was founded with a single conviction: that great technology, thoughtfully crafted, can transform businesses and improve lives. We started with a passionate team and a relentless focus on quality.
+              <p className="text-slate-600 leading-relaxed mb-5">
+                8BitField is a small, specialized software development team. We are
+                not a large enterprise agency — and we don&apos;t pretend to be one.
               </p>
-              <p className="text-gray-500 leading-relaxed">
-                Today, our agile team of engineers, designers, and strategists partners with forward-thinking businesses and startups to build products that matter.
+              <p className="text-slate-600 leading-relaxed mb-5">
+                Our focus is practical engineering: turning ideas, operational
+                problems, and product requirements into reliable, maintainable
+                software.
+              </p>
+              <p className="text-slate-600 leading-relaxed">
+                Small enough to communicate directly. Capable enough to build
+                serious software.
               </p>
             </div>
 
-            {/* Timeline */}
-            <div className="space-y-4">
+            <div className="grid sm:grid-cols-3 gap-4">
               {[
-                { year: "Phase 1", event: "Founded in San Francisco by a passionate team of digital developers" },
-                { year: "Phase 2", event: "Launched AI practice and delivered first 5 client projects" },
-                { year: "Phase 3", event: "Expanded engineering team and launched QA & DevOps offerings" },
-                { year: "Phase 4", event: "Reached 20+ projects milestone and 95% client satisfaction" },
-              ].map((item) => (
-                <div key={item.year} className="flex gap-5 items-start">
-                  <div className="shrink-0 w-20 h-8 rounded-full bg-brand-700 flex items-center justify-center text-xs font-bold text-white">
-                    {item.year}
-                  </div>
-                  <GlassCard padding="p-4" hover={false} className="flex-1">
-                    <p className="text-sm text-gray-600">{item.event}</p>
-                  </GlassCard>
+                {
+                  value: "5+",
+                  label: "Clients",
+                  sub: "Businesses and teams we've worked with",
+                },
+                {
+                  value: "8+",
+                  label: "Projects",
+                  sub: "Across web, business systems, and AI/ML",
+                },
+                {
+                  value: "5+",
+                  label: "Team Members",
+                  sub: "Web, backend, mobile, and AI/ML",
+                },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="border border-slate-200 rounded-xl p-5 bg-slate-50"
+                >
+                  <p className="font-display text-3xl font-bold text-brand-700 mb-1">
+                    {stat.value}
+                  </p>
+                  <p className="text-sm font-semibold text-slate-900">{stat.label}</p>
+                  <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                    {stat.sub}
+                  </p>
                 </div>
               ))}
             </div>
@@ -79,33 +80,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Values */}
-      <section className="py-20 bg-gray-50">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest bg-brand-50 text-brand-700 border border-brand-200 mb-4">
-              Our Values
-            </span>
-            <h2 className="text-4xl font-black text-slate-900">
-              What We <span className="text-brand-700">Stand For</span>
-            </h2>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {values.map((val) => (
-              <GlassCard key={val.title} className="flex gap-4 items-start">
-                <div className="w-11 h-11 rounded-xl bg-brand-700 flex items-center justify-center shadow-sm shrink-0">
-                  <FontAwesomeIcon icon={val.icon} className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-slate-900 mb-1">{val.title}</h3>
-                  <p className="text-sm text-gray-500">{val.desc}</p>
-                </div>
-              </GlassCard>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      <Why8BitField />
+      <TeamSection />
+      <EnterpriseExperience />
       <CTA />
     </>
   );

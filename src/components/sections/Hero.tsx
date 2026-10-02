@@ -1,160 +1,90 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowRight,
-  faPlay,
-  faStar,
-  faCheckCircle,
-} from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import TrackedLink from "@/components/analytics/TrackedLink";
+
+const trustStats = [
+  {
+    value: "5+",
+    label: "Clients",
+    sub: "Businesses and teams we've worked with.",
+  },
+  {
+    value: "8+",
+    label: "Projects",
+    sub: "Software projects delivered across different domains.",
+  },
+  {
+    value: "5+",
+    label: "Team Members",
+    sub: "Specialists across web, backend, mobile, and AI/ML.",
+  },
+];
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center bg-transparent overflow-hidden">
-      {/* Background bubbles */}
-      <div className="absolute top-20 left-10 w-72 h-72 rounded-full bg-brand-100/35 border border-brand-200/40 pointer-events-none" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full bg-brand-200/20 border border-brand-200/30 pointer-events-none" />
-      <div className="absolute top-1/2 left-1/3 w-32 h-32 rounded-full bg-brand-100/25 border border-brand-200/30 pointer-events-none" />
-      <div className="absolute bottom-1/3 left-1/4 w-16 h-16 rounded-full bg-brand-200/30 border border-brand-200/45 pointer-events-none" />
+    <section className="relative overflow-hidden bg-white border-b border-slate-100">
+      <div className="absolute top-0 left-0 right-0 h-1 bg-bit-orange" />
 
-      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-20 lg:pt-16 lg:pb-24">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left content */}
-          <div className="animate-fade-in-up">
-            {/* Trust badge */}
-            <div className="inline-flex flex-wrap items-center gap-x-3 gap-y-1.5 px-4.5 py-2.5 rounded-full bg-white border border-gray-200 shadow-sm mb-8 animate-fade-in-up">
-              <div className="flex items-center gap-1.5">
-                <FontAwesomeIcon icon={faCheckCircle} className="w-4 h-4 text-emerald-500" />
-                <span className="text-xs text-slate-800 font-bold tracking-tight">20+ Projects Delivered Successfully</span>
-              </div>
-            </div>
+      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16 lg:pt-24 lg:pb-20">
+        <div className="max-w-3xl animate-fade-in-up">
+          <p className="text-sm font-semibold tracking-wide text-bit-cyan-dark mb-5 uppercase">
+            Custom Software Development
+          </p>
 
-            <h1 className="text-5xl md:text-6xl xl:text-7xl font-black leading-[1.05] text-slate-900 mb-6">
-              We{" "}
-              <span className="text-brand-700">Illuminate</span>
-              <br />
-              Your Digital
-              <br />
-              <span className="text-brand-700">Excellence</span>
-            </h1>
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] text-brand-800 mb-6 tracking-tight">
+            We Build Software That Moves Your Business{" "}
+            <span className="text-bit-orange">Forward.</span>
+          </h1>
 
-            <p className="text-lg text-gray-500 leading-relaxed mb-10 max-w-lg">
-              From visionary web platforms to intelligent AI solutions — Lumiora crafts
-              transformative digital experiences that drive measurable growth.
-            </p>
+          <p className="text-lg sm:text-xl text-slate-600 leading-relaxed mb-10 max-w-2xl">
+            From business applications and SaaS products to mobile apps, backend
+            systems, and AI solutions, 8BitField helps businesses turn ideas and
+            operational problems into reliable software.
+          </p>
 
-            {/* Feature chips */}
-            <div className="flex flex-wrap gap-2 mb-10">
-              {[
-                "Web Development",
-                "AI Solutions",
-                "Mobile Apps",
-                "UI/UX Design",
-              ].map((feat) => (
-                <span
-                  key={feat}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-brand-800 bg-brand-50 border border-brand-200"
-                >
-                  <FontAwesomeIcon icon={faCheckCircle} className="w-3 h-3 text-brand-600" />
-                  {feat}
-                </span>
-              ))}
-            </div>
-
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/get-a-quote"
-                className="group flex items-center gap-2 px-8 py-4 bg-brand-700 text-white font-bold rounded-2xl shadow-sm hover:bg-brand-800 hover:shadow-md transition-all duration-200"
-              >
-                Start Your Project
-                <FontAwesomeIcon
-                  icon={faArrowRight}
-                  className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                />
-              </Link>
-              <Link
-                href="/portfolio"
-                className="group flex items-center gap-3 px-8 py-4 bg-white text-brand-800 font-bold rounded-2xl border border-gray-200 shadow-sm hover:border-brand-300 hover:shadow-md transition-all duration-200"
-              >
-                <div className="w-8 h-8 rounded-full bg-brand-700 flex items-center justify-center">
-                  <FontAwesomeIcon icon={faPlay} className="w-3 h-3 text-white ml-0.5" />
-                </div>
-                View Our Work
-              </Link>
-            </div>
+          <div className="flex flex-wrap gap-3 mb-14">
+            <TrackedLink
+              href="/contact"
+              event="cta_click"
+              props={{ location: "hero", label: "start_a_project" }}
+              className="group inline-flex items-center gap-2 px-7 py-3.5 bg-bit-orange text-white font-semibold rounded-lg hover:bg-bit-orange-dark transition-colors duration-200"
+            >
+              Start a Project
+              <FontAwesomeIcon
+                icon={faArrowRight}
+                className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"
+              />
+            </TrackedLink>
+            <TrackedLink
+              href="/portfolio"
+              event="cta_click"
+              props={{ location: "hero", label: "view_our_work" }}
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-brand-800 font-semibold rounded-lg border border-bit-cyan/40 hover:border-bit-cyan hover:text-bit-cyan-dark transition-colors duration-200"
+            >
+              View Our Work
+            </TrackedLink>
           </div>
 
-          {/* Right visual */}
-          <div className="relative animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-            {/* Card & badges wrapper to keep them together */}
-            <div className="relative max-w-sm mx-auto lg:mx-0 lg:ml-auto">
-              {/* Main card */}
-              <div className="bg-white border border-gray-200 shadow-sm rounded-3xl p-8">
-                {/* Card header */}
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 rounded-2xl bg-brand-700 flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="font-bold text-brand-900">Project Dashboard</p>
-                    <p className="text-xs text-gray-400">Real-time analytics</p>
-                  </div>
-                  <div className="ml-auto w-2 h-2 rounded-full bg-emerald-400" />
-                </div>
-
-                {/* Stats */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  {[
-                    { label: "Projects Done", value: "20+" },
-                    { label: "Happy Clients", value: "10+" },
-                    { label: "Team Members", value: "8+" },
-                    { label: "Years Experience", value: "1+" },
-                  ].map((stat) => (
-                    <div key={stat.label} className="bg-gray-50 border border-gray-100 rounded-2xl p-4">
-                      <p className="text-2xl font-black text-brand-700">
-                        {stat.value}
-                      </p>
-                      <p className="text-xs text-gray-500 mt-0.5">{stat.label}</p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Progress bars */}
-                <div className="space-y-3">
-                  {[
-                    { label: "Client Satisfaction", pct: 95 },
-                    { label: "On-Time Delivery", pct: 95 },
-                    { label: "Project Success Rate", pct: 98 },
-                  ].map((bar) => (
-                    <div key={bar.label}>
-                      <div className="flex justify-between text-xs text-gray-500 mb-1">
-                        <span>{bar.label}</span>
-                        <span className="font-semibold text-brand-700">{bar.pct}%</span>
-                      </div>
-                      <div className="h-1.5 rounded-full bg-brand-50">
-                        <div
-                          className="h-full rounded-full bg-brand-700"
-                          style={{ width: `${bar.pct}%` }}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
+          <div className="grid sm:grid-cols-3 gap-6 pt-8 border-t border-slate-200">
+            {trustStats.map((stat, i) => (
+              <div key={stat.label}>
+                <p
+                  className={`font-display text-3xl font-bold mb-1 ${
+                    i === 1 ? "text-bit-orange" : "text-bit-cyan-dark"
+                  }`}
+                >
+                  {stat.value}
+                </p>
+                <p className="text-sm font-semibold text-slate-900">{stat.label}</p>
+                <p className="text-xs text-slate-500 mt-1 leading-relaxed">{stat.sub}</p>
               </div>
-
-              <div className="absolute -bottom-4 -left-4 bg-white border border-gray-200 shadow-sm rounded-2xl px-4 py-2">
-                <p className="text-xs font-bold text-brand-700">🚀 Latest Project</p>
-                <p className="text-xs text-gray-400">Launched in 48hrs</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
-
     </section>
   );
 }

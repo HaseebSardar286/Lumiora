@@ -36,7 +36,7 @@ export default function UIUXDesignPage() {
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              {[{ label: "Designs Shipped", value: "20+" }, { label: "Avg UX Score", value: "92/100" }, { label: "Conversion Lift", value: "+25%" }, { label: "Accessibility", value: "WCAG AAA" }].map((stat) => (
+              {[{ label: "Approach", value: "Practical UX" }, { label: "Focus", value: "Usability" }, { label: "Delivery", value: "Iterative" }, { label: "Standard", value: "Accessible" }].map((stat) => (
                 <GlassCard key={stat.label} className="text-center">
                   <p className="text-3xl font-black text-brand-700 mb-1">{stat.value}</p>
                   <p className="text-xs text-gray-500">{stat.label}</p>
@@ -47,7 +47,7 @@ export default function UIUXDesignPage() {
         </div>
       </section>
       <section className="py-16 bg-white text-center">
-        <a href="/get-a-quote" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-700 text-white font-bold rounded-2xl shadow-sm hover:bg-brand-800 transition-colors duration-200">
+        <a href="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-700 text-white font-bold rounded-2xl shadow-sm hover:bg-brand-800 transition-colors duration-200">
           Start a Design Project <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
         </a>
       </section>
