@@ -40,8 +40,12 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: BRAND.name }],
   icons: {
-    icon: BRAND.logoPath,
-    apple: BRAND.logoPath,
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/brand-logo.png", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-icon.png", type: "image/png" }],
+    shortcut: "/favicon.ico",
   },
   openGraph: {
     title: BRAND.seoTitle,

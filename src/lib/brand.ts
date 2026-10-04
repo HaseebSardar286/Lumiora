@@ -10,8 +10,11 @@ export const BRAND = {
   seoTitle: "8BitField | Custom Software Development for Businesses & Startups",
   seoDescription:
     "8BitField builds custom web applications, SaaS products, backend systems, mobile applications, and AI/ML solutions for businesses and startups.",
-  logoPath: "/brand-logo.png",
-  logoAlt: "8BitField — Innovate the Pixel",
+  /** Cache-busted when the brand mark changes */
+  logoPath: "/brand-logo.png?v=7",
+  /** Light mark for dark surfaces (footer, dark UI) */
+  logoOnDarkPath: "/brand-logo-on-dark.png?v=7b",
+  logoAlt: "8BitField",
 } as const;
 
 export const BRAND_COPYRIGHT = `© ${BRAND.copyrightYear} ${BRAND.name}. All rights reserved.`;

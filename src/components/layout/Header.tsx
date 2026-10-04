@@ -54,7 +54,7 @@ export default function Header() {
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-18">
             <Link href="/" className="flex items-center group shrink-0" aria-label="8BitField home">
-              <BrandLogo height={56} priority />
+              <BrandLogo height={48} priority />
             </Link>
 
             <nav className="hidden lg:flex items-center gap-1" aria-label="Main">

@@ -23,7 +23,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-10 mb-12">
           <div className="md:col-span-1">
             <Link href="/" className="inline-flex mb-4" aria-label="8BitField home">
-              <BrandLogo height={96} />
+              <BrandLogo height={72} variant="onDark" />
             </Link>
             <p className="text-brand-300 text-sm leading-relaxed max-w-xs">
               {BRAND.tagline}

@@ -6,20 +6,24 @@ type BrandLogoProps = {
   height?: number;
   className?: string;
   priority?: boolean;
+  /** Use the light mark on dark backgrounds (footer, etc.) */
+  variant?: "default" | "onDark";
 };
 
 export default function BrandLogo({
   height = 40,
   className = "",
   priority = false,
+  variant = "default",
 }: BrandLogoProps) {
-  // Full stacked logo (rocket above wordmark), roughly square
-  const aspect = 1000 / 951;
+  // Stacked badge + wordmark lockup (square canvas)
+  const aspect = 1;
   const width = Math.round(height * aspect);
+  const src = variant === "onDark" ? BRAND.logoOnDarkPath : BRAND.logoPath;
 
   return (
     <Image
-      src={BRAND.logoPath}
+      src={src}
       alt={BRAND.logoAlt}
       width={width}
       height={height}

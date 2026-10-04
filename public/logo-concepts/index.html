@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>8BitField logo concepts</title>
+    <style>
+      :root {
+        --navy: #0b1f3a;
+        --muted: #64748b;
+        --line: #e2e8f0;
+        --bg: #f8fafc;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--navy);
+      }
+      header {
+        padding: 28px 24px 8px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: 1.5rem;
+        letter-spacing: -0.02em;
+      }
+      p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+      .grid {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 24px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+      }
+      @media (max-width: 800px) {
+        .grid { grid-template-columns: 1fr; }
+      }
+      .card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      .preview {
+        height: 280px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background:
+          linear-gradient(45deg, #f1f5f9 25%, transparent 25%),
+          linear-gradient(-45deg, #f1f5f9 25%, transparent 25%),
+          linear-gradient(45deg, transparent 75%, #f1f5f9 75%),
+          linear-gradient(-45deg, transparent 75%, #f1f5f9 75%);
+        background-size: 20px 20px;
+        background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+        border-bottom: 1px solid var(--line);
+        padding: 24px;
+      }
+      .preview img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+      .meta {
+        padding: 16px 18px 18px;
+      }
+      .meta h2 {
+        margin: 0 0 6px;
+        font-size: 1.05rem;
+      }
+      .meta p {
+        font-size: 0.875rem;
+      }
+      .tag {
+        display: inline-block;
+        margin-top: 10px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--navy);
+        background: #eef2ff;
+        border-radius: 999px;
+        padding: 4px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>8BitField logo concepts</h1>
+      <p>Selected: <strong>#7 Crosshair badge</strong> — now live site-wide. Other concepts kept for reference.</p>
+    </header>
+    <div class="grid">
+      <article class="card">
+        <div class="preview"><img src="./01-monogram.jpg" alt="Logo 1 monogram" /></div>
+        <div class="meta">
+          <h2>1 — Monogram 8</h2>
+          <p>Geometric block “8” with one coral accent. Strong for favicon / app icon.</p>
+          <span class="tag">Best for tab icon</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="preview"><img src="./02-wordmark.jpg" alt="Logo 2 wordmark" /></div>
+        <div class="meta">
+          <h2>2 — Wordmark</h2>
+          <p>Orange pixel mark + 8BitField text. Clean for header / navigation.</p>
+          <span class="tag">Best for header</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="preview"><img src="./03-pixel-field.jpg" alt="Logo 3 pixel field" /></div>
+        <div class="meta">
+          <h2>3 — Pixel F badge</h2>
+          <p>Navy rounded square with pixel “F” and orange/cyan accents.</p>
+          <span class="tag">App icon style</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="preview"><img src="./04-geometric-mark.jpg" alt="Logo 4 geometric mark" /></div>
+        <div class="meta">
+          <h2>4 — Stacked lockup</h2>
+          <p>Abstract linked-8 mark with wordmark underneath. Full brand lockup.</p>
+          <span class="tag">Hero / footer</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="preview"><img src="./05-lettermark.jpg" alt="Logo 5 lettermark B" /></div>
+        <div class="meta">
+          <h2>5 — Pixel lettermark B</h2>
+          <p>Modular brick “B” with one coral accent tile. Tight, modern monogram.</p>
+          <span class="tag">New option</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="preview"><img src="./06-field-grid.jpg" alt="Logo 6 field grid" /></div>
+        <div class="meta">
+          <h2>6 — Field grid wordmark</h2>
+          <p>Grid “field” icon with a coral signal sweep + 8BitField text. Systems vibe.</p>
+          <span class="tag">New option</span>
+        </div>
+      </article>
+      <article class="card" style="outline: 2px solid #0b1f3a;">
+        <div class="preview"><img src="./07-badge-word.jpg" alt="Logo 7 badge word" /></div>
+        <div class="meta">
+          <h2>7 — Crosshair badge</h2>
+          <p>Circular navy badge with pixel crosshair mark + stacked wordmark.</p>
+          <span class="tag">Selected / live</span>
+        </div>
+      </article>
+    </div>
+  </body>
+</html>
