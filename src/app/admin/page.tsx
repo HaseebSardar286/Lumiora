@@ -130,9 +130,24 @@ export default function AdminPanel() {
 
       // Test credentials by trying to fetch config
       const configRes = await fetch(`/api/admin/config?email=${encodedEmail}&password=${encodedPass}`);
-      
+
       if (!configRes.ok) {
-        throw new Error("Invalid admin credentials");
+        if (configRes.status === 401 || configRes.status === 403) {
+          throw new Error("Invalid admin credentials");
+        }
+        if (configRes.status === 502 || configRes.status === 503) {
+          throw new Error(
+            "Admin API is unavailable. Check BACKEND_API_URL on the frontend host and that the backend is healthy."
+          );
+        }
+        let detail = "";
+        try {
+          const errBody = await configRes.json();
+          detail = errBody?.error ? ` (${errBody.error})` : "";
+        } catch {
+          /* ignore */
+        }
+        throw new Error(`Admin login failed (${configRes.status})${detail}`);
       }
       
       const configData = await configRes.json();
