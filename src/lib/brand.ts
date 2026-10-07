@@ -10,10 +10,11 @@ export const BRAND = {
   emailMailto: "mailto:haseebsardar286@gmail.com",
   whatsappDisplay: "+92 310 4836096",
   whatsappUrl: "https://wa.me/923104836096",
-  // Set NEXT_SITE_URL in Vercel when you connect a custom domain (server-side)
-  siteUrl: (
-    process.env.NEXT_SITE_URL || "https://lumiora-two.vercel.app"
-  ).replace(/\/$/, ""),
+  // Canonical public domain (sitemap, robots, Open Graph, JSON-LD)
+  siteUrl: (process.env.NEXT_SITE_URL || "https://8bitfield.com").replace(
+    /\/$/,
+    ""
+  ),
   copyrightYear: 2026,
   seoTitle: "8BitField | Custom Software Development for Businesses & Startups",
   seoDescription:
