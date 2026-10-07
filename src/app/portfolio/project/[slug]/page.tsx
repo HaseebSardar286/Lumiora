@@ -11,6 +11,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Project } from "@/data/projects";
 import TrackedLink from "@/components/analytics/TrackedLink";
+import { BRAND } from "@/lib/brand";
+import { buildPageMetadata } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -50,10 +52,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Project Not Found" };
   }
 
-  return {
+  const image =
+    project.image?.startsWith("http") || project.image?.startsWith("/")
+      ? project.image
+      : undefined;
+
+  return buildPageMetadata({
+    path: `/portfolio/project/${slug}`,
     title: `${project.title} — Case Study`,
-    description: project.desc,
-  };
+    description: project.desc || project.longDesc?.slice(0, 160) || BRAND.seoDescription,
+    image,
+  });
 }
 
 export async function generateStaticParams() {

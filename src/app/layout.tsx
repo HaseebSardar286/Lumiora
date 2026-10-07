@@ -6,6 +6,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import AnalyticsProvider from "@/components/analytics/AnalyticsProvider";
+import SiteJsonLd from "@/components/seo/SiteJsonLd";
 import { BRAND } from "@/lib/brand";
 
 const outfit = Outfit({
@@ -67,9 +68,23 @@ export const metadata: Metadata = {
     description: BRAND.seoDescription,
     images: [BRAND.logoPath],
   },
-  alternates: {
-    canonical: BRAND.siteUrl,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? {
+        verification: {
+          google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+        },
+      }
+    : {}),
 };
 
 export default function RootLayout({
@@ -80,6 +95,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${outfit.variable} ${sourceSans.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-sans relative overflow-x-hidden bg-white text-slate-600">
+        <SiteJsonLd />
         <Suspense fallback={null}>
           <AnalyticsProvider />
         </Suspense>

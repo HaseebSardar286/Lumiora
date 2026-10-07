@@ -10,8 +10,10 @@ export const BRAND = {
   emailMailto: "mailto:haseebsardar286@gmail.com",
   whatsappDisplay: "+92 310 4836096",
   whatsappUrl: "https://wa.me/923104836096",
-  // Keep current deployment URL until a dedicated 8BitField domain is configured
-  siteUrl: "https://lumiora-two.vercel.app",
+  // Set NEXT_SITE_URL in Vercel when you connect a custom domain (server-side)
+  siteUrl: (
+    process.env.NEXT_SITE_URL || "https://lumiora-two.vercel.app"
+  ).replace(/\/$/, ""),
   copyrightYear: 2026,
   seoTitle: "8BitField | Custom Software Development for Businesses & Startups",
   seoDescription:

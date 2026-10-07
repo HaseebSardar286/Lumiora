@@ -12,12 +12,14 @@ import CTA from "@/components/sections/CTA";
 import ContactSection from "@/components/sections/ContactSection";
 import EnterpriseExperience from "@/components/sections/EnterpriseExperience";
 import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: "/",
   title: "8BitField | Custom Software Development for Businesses & Startups",
   description:
     "8BitField builds custom web applications, SaaS products, backend systems, mobile applications, and AI/ML solutions for businesses and startups.",
-};
+});
 
 export default function Home() {
   return (
