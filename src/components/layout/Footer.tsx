@@ -29,9 +29,11 @@ export default function Footer() {
               {BRAND.tagline}
             </p>
             <TrackedLink
-              href={BRAND.emailMailto}
+              href={BRAND.emailUrl}
               event="email_click"
               props={{ location: "footer" }}
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-5 inline-flex items-center gap-2 text-sm text-brand-300 hover:text-white transition-colors"
             >
               <FontAwesomeIcon icon={faEnvelope} className="w-4 h-4 text-brand-500" />

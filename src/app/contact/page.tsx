@@ -31,7 +31,9 @@ export default function ContactPage() {
               </p>
 
               <a
-                href={BRAND.emailMailto}
+                href={BRAND.emailUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-4 p-4 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-200 transition-colors group"
               >
                 <div className="w-10 h-10 rounded-lg bg-brand-700 flex items-center justify-center">

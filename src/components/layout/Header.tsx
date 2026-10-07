@@ -71,9 +71,11 @@ export default function Header() {
                 |
               </span>
               <TrackedLink
-                href={BRAND.emailMailto}
+                href={BRAND.emailUrl}
                 event="email_click"
                 props={{ location: "header_banner" }}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 hover:text-white transition-colors min-w-0"
               >
                 <FontAwesomeIcon icon={faEnvelope} className="w-3 h-3 text-bit-cyan shrink-0" />
