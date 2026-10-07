@@ -109,6 +109,23 @@ function slugify(text: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
+async function readApiJson(res: Response): Promise<Record<string, any>> {
+  const contentType = res.headers.get("content-type") || "";
+  const text = await res.text();
+  if (!contentType.includes("application/json")) {
+    throw new Error(
+      res.status === 404
+        ? "Project API route not found. Rebuild/restart the backend (`npm start` in /backend)."
+        : `Server returned a non-JSON response (${res.status}). Is the backend running the latest build?`
+    );
+  }
+  try {
+    return text ? JSON.parse(text) : {};
+  } catch {
+    throw new Error(`Invalid JSON from server (${res.status}).`);
+  }
+}
+
 export default function AdminProjectsPanel({
   email,
   password,
@@ -208,7 +225,7 @@ export default function AdminProjectsPanel({
       method: "POST",
       body,
     });
-    const data = await res.json();
+    const data = await readApiJson(res);
     if (!res.ok) throw new Error(data.error || "Failed to upload images.");
     return data.urls || [];
   };
@@ -266,7 +283,7 @@ export default function AdminProjectsPanel({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
-      const data = await res.json();
+      const data = await readApiJson(res);
       if (!res.ok) throw new Error(data.error || "Failed to delete project.");
 
       onProjectsChange(projects.filter((p) => p.slug !== slug));
@@ -306,7 +323,7 @@ export default function AdminProjectsPanel({
           password,
         }),
       });
-      const data = await res.json();
+      const data = await readApiJson(res);
       if (!res.ok) throw new Error(data.error || "Failed to save project.");
 
       const saved: Project = data.project;
