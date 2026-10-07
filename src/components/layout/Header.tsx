@@ -4,9 +4,11 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faEnvelope, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import TrackedLink from "@/components/analytics/TrackedLink";
 import BrandLogo from "@/components/ui/BrandLogo";
+import { BRAND } from "@/lib/brand";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -51,6 +53,36 @@ export default function Header() {
           scrolled ? "shadow-sm border-b border-slate-200" : "border-b border-transparent"
         }`}
       >
+        <div className="bg-brand-950 text-brand-200">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-center sm:justify-end gap-x-5 gap-y-1 min-h-9 py-1.5 text-[11px] sm:text-xs">
+              <TrackedLink
+                href={BRAND.whatsappUrl}
+                event="whatsapp_click"
+                props={{ location: "header_banner" }}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
+              >
+                <FontAwesomeIcon icon={faWhatsapp} className="w-3.5 h-3.5 text-[#25D366]" />
+                <span>{BRAND.whatsappDisplay}</span>
+              </TrackedLink>
+              <span className="text-brand-400/50" aria-hidden>
+                |
+              </span>
+              <TrackedLink
+                href={BRAND.emailMailto}
+                event="email_click"
+                props={{ location: "header_banner" }}
+                className="inline-flex items-center gap-1.5 hover:text-white transition-colors min-w-0"
+              >
+                <FontAwesomeIcon icon={faEnvelope} className="w-3 h-3 text-bit-cyan shrink-0" />
+                <span className="truncate">{BRAND.email}</span>
+              </TrackedLink>
+            </div>
+          </div>
+        </div>
+
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-18">
             <Link href="/" className="flex items-center group shrink-0" aria-label="8BitField home">
@@ -137,7 +169,8 @@ export default function Header() {
         </div>
       </div>
 
-      <div className="h-16 lg:h-[4.5rem]" />
+      {/* Contact banner (~2.25rem) + nav bar */}
+      <div className="h-[calc(2.25rem+4rem)] lg:h-[calc(2.25rem+4.5rem)]" />
     </>
   );
 }

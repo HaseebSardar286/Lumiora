@@ -2,8 +2,11 @@
 export const BRAND = {
   name: "8BitField",
   tagline: "Software development for businesses and startups.",
-  email: "hello@8bitfield.com",
-  emailMailto: "mailto:hello@8bitfield.com",
+  // Temporary personal inbox until company domain email is purchased
+  email: "haseebsardar286@gmail.com",
+  emailMailto: "mailto:haseebsardar286@gmail.com",
+  whatsappDisplay: "+92 310 4836096",
+  whatsappUrl: "https://wa.me/923104836096",
   // Keep current deployment URL until a dedicated 8BitField domain is configured
   siteUrl: "https://lumiora-two.vercel.app",
   copyrightYear: 2026,

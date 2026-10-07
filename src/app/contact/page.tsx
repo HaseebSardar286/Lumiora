@@ -3,6 +3,7 @@
 import React, { Suspense } from "react";
 import PageHero from "@/components/ui/PageHero";
 import ContactForm from "@/components/sections/ContactForm";
+import { BRAND } from "@/lib/brand";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
@@ -30,7 +31,7 @@ export default function ContactPage() {
               </p>
 
               <a
-                href="mailto:hello@8bitfield.com"
+                href={BRAND.emailMailto}
                 className="flex items-center gap-4 p-4 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-200 transition-colors group"
               >
                 <div className="w-10 h-10 rounded-lg bg-brand-700 flex items-center justify-center">
@@ -39,7 +40,7 @@ export default function ContactPage() {
                 <div>
                   <p className="text-xs text-slate-400">Email</p>
                   <p className="text-sm font-semibold text-slate-900 group-hover:text-brand-700 transition-colors">
-                    hello@8bitfield.com
+                    {BRAND.email}
                   </p>
                 </div>
               </a>
