@@ -140,6 +140,8 @@ export default function AdminProjectsPanel({
   const [submitting, setSubmitting] = useState(false);
   const [uploadingCover, setUploadingCover] = useState(false);
   const [uploadingScreens, setUploadingScreens] = useState(false);
+  const [coverUrlInput, setCoverUrlInput] = useState("");
+  const [screenshotUrlInput, setScreenshotUrlInput] = useState("");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -183,11 +185,15 @@ export default function AdminProjectsPanel({
     setModalOpen(false);
     setEditingSlug(null);
     setForm(emptyForm);
+    setCoverUrlInput("");
+    setScreenshotUrlInput("");
   };
 
   const openCreateModal = () => {
     setEditingSlug(null);
     setForm(emptyForm);
+    setCoverUrlInput("");
+    setScreenshotUrlInput("");
     setModalOpen(true);
     onError("");
     onSuccess("");
@@ -197,6 +203,8 @@ export default function AdminProjectsPanel({
     try {
       setEditingSlug(project.slug);
       setForm(listsToForm(project));
+      setCoverUrlInput("");
+      setScreenshotUrlInput("");
       setModalOpen(true);
       onError("");
       onSuccess("");
@@ -207,6 +215,40 @@ export default function AdminProjectsPanel({
           : "Could not load project for editing."
       );
     }
+  };
+
+  const applyCoverUrl = () => {
+    const url = coverUrlInput.trim();
+    if (!url) return;
+    try {
+      // Allow absolute http(s) URLs and site-relative paths
+      if (!url.startsWith("/") && !/^https?:\/\//i.test(url)) {
+        onError("Cover image URL must start with https:// or /");
+        return;
+      }
+      updateField("image", url);
+      setCoverUrlInput("");
+      onError("");
+    } catch {
+      onError("Invalid cover image URL.");
+    }
+  };
+
+  const applyScreenshotUrl = () => {
+    const url = screenshotUrlInput.trim();
+    if (!url) return;
+    if (!url.startsWith("/") && !/^https?:\/\//i.test(url)) {
+      onError("Screenshot URL must start with https:// or /");
+      return;
+    }
+    setForm((prev) => ({
+      ...prev,
+      screenshots: prev.screenshots.includes(url)
+        ? prev.screenshots
+        : [...prev.screenshots, url],
+    }));
+    setScreenshotUrlInput("");
+    onError("");
   };
 
   const uploadImages = async (files: FileList | File[]): Promise<string[]> => {
@@ -649,6 +691,23 @@ export default function AdminProjectsPanel({
                         </div>
                       )}
                     </div>
+                    <div className="flex flex-col sm:flex-row gap-2">
+                      <input
+                        className={inputClass}
+                        value={coverUrlInput}
+                        onChange={(e) => setCoverUrlInput(e.target.value)}
+                        placeholder="Or paste image URL (https://...)"
+                        disabled={submitting}
+                      />
+                      <button
+                        type="button"
+                        onClick={applyCoverUrl}
+                        disabled={submitting || !coverUrlInput.trim()}
+                        className="shrink-0 px-4 py-2.5 text-xs font-bold text-slate-700 border border-gray-200 bg-white rounded-xl hover:border-gray-300 cursor-pointer disabled:opacity-50"
+                      >
+                        Use URL
+                      </button>
+                    </div>
                   </div>
 
                   <div className="md:col-span-2 space-y-3">
@@ -668,6 +727,23 @@ export default function AdminProjectsPanel({
                         onChange={handleScreenshotsChange}
                       />
                     </label>
+                    <div className="flex flex-col sm:flex-row gap-2">
+                      <input
+                        className={inputClass}
+                        value={screenshotUrlInput}
+                        onChange={(e) => setScreenshotUrlInput(e.target.value)}
+                        placeholder="Or paste screenshot URL (https://...)"
+                        disabled={submitting}
+                      />
+                      <button
+                        type="button"
+                        onClick={applyScreenshotUrl}
+                        disabled={submitting || !screenshotUrlInput.trim()}
+                        className="shrink-0 px-4 py-2.5 text-xs font-bold text-slate-700 border border-gray-200 bg-white rounded-xl hover:border-gray-300 cursor-pointer disabled:opacity-50"
+                      >
+                        Add URL
+                      </button>
+                    </div>
                     {form.screenshots.length > 0 ? (
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                         {form.screenshots.map((url) => (
