@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 const BACKEND_URL = process.env.BACKEND_API_URL || "http://localhost:5000";
 
 /**
- * Proxy uploaded portfolio images from the backend so the frontend can use
- * stable paths like /uploads/projects/... in <img src>.
+ * Proxy uploaded images from the backend so the frontend can use
+ * stable paths like /uploads/projects/... or /uploads/team/... in <img src>.
  */
 export async function GET(
   _req: NextRequest,

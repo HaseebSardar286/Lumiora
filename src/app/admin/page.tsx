@@ -5,10 +5,12 @@ import PageHero from "@/components/ui/PageHero";
 import GlassCard from "@/components/ui/GlassCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AdminProjectsPanel from "@/components/admin/AdminProjectsPanel";
+import AdminTeamPanel from "@/components/admin/AdminTeamPanel";
 import AdminContactsPanel, {
   type ContactMessage,
 } from "@/components/admin/AdminContactsPanel";
 import type { Project } from "@/data/projects";
+import type { TeamMember } from "@/data/team";
 import {
   faLock,
   faSpinner,
@@ -21,13 +23,16 @@ export default function AdminPanel() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [contacts, setContacts] = useState<ContactMessage[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
 
   const [loading, setLoading] = useState(false);
   const [authError, setAuthError] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const [activeTab, setActiveTab] = useState<"contacts" | "projects">("contacts");
+  const [activeTab, setActiveTab] = useState<"contacts" | "projects" | "team">(
+    "contacts"
+  );
 
   useEffect(() => {
     const savedEmail = sessionStorage.getItem("8bitfield_admin_email");
@@ -83,6 +88,10 @@ export default function AdminPanel() {
       const projectsData = await projectsRes.json();
       setProjects(projectsData.projects || []);
 
+      const teamRes = await fetch("/api/team");
+      const teamData = await teamRes.json();
+      setTeamMembers(teamData.members || []);
+
       setIsAuthenticated(true);
       sessionStorage.setItem("8bitfield_admin_email", emailVal);
       sessionStorage.setItem("8bitfield_admin_password", passwordVal);
@@ -112,6 +121,7 @@ export default function AdminPanel() {
     setIsAuthenticated(false);
     setContacts([]);
     setProjects([]);
+    setTeamMembers([]);
   };
 
   if (!isAuthenticated) {
@@ -121,7 +131,7 @@ export default function AdminPanel() {
           badge="Admin"
           title="Admin"
           highlight="Login"
-          subtitle="Sign in to manage contact messages and portfolio projects."
+          subtitle="Sign in to manage contact messages, portfolio projects, and team members."
           compact
         />
         <section className="py-16 bg-slate-50/50">
@@ -196,7 +206,7 @@ export default function AdminPanel() {
         badge="Admin Dashboard"
         title="Manage"
         highlight="Inbox"
-        subtitle="Review contact messages and update portfolio case studies."
+        subtitle="Review contact messages, update portfolio case studies, and manage the team."
         compact
       />
 
@@ -237,6 +247,17 @@ export default function AdminPanel() {
               >
                 Portfolio
               </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab("team")}
+                className={`px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-200 cursor-pointer ${
+                  activeTab === "team"
+                    ? "bg-brand-700 text-white shadow-sm"
+                    : "bg-white text-slate-600 border border-gray-200 hover:border-brand-500"
+                }`}
+              >
+                Team
+              </button>
             </div>
             <button
               type="button"
@@ -275,6 +296,17 @@ export default function AdminPanel() {
               password={password}
               projects={projects}
               onProjectsChange={setProjects}
+              onError={setError}
+              onSuccess={setSuccess}
+            />
+          )}
+
+          {activeTab === "team" && (
+            <AdminTeamPanel
+              email={email}
+              password={password}
+              members={teamMembers}
+              onMembersChange={setTeamMembers}
               onError={setError}
               onSuccess={setSuccess}
             />
